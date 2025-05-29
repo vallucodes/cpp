@@ -1,32 +1,20 @@
 #include <iostream>
-#include <string>
 
-class Car {
-public:
-	Car();
-	Car(std::string brand, std::string model, int year);
-	std::string	brand;
-	std::string	model;
-	int			year;
-};
-
-Car::Car(std::string brand, std::string model, int year) {
-	this->brand = brand;
-	this->model = model;
-	this->year = year;
-	return ;
+void	megaphone(std::string msg)
+{
+	for (size_t i = 0; msg[i]; i++)
+		std::cout << static_cast<unsigned char>(std::toupper(static_cast<unsigned char>(msg[i])));
 }
 
-Car::Car(void) {
-	std::cout << "Wadap!" << std::endl;
-	brand = "Default car";
-	model = "Default model";
-	year = 0;
-	return ;
-}
-
-int main() {
-	Car car1;
-	std::cout << car1.brand << " " << car1.model << " " << car1.year << std::endl;
-	return 0;
+int main(int ac, char **av) {
+	if (ac == 1) {
+		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *";
+	}
+	else
+	{
+		for (int i = 1; i < ac; i++)
+			megaphone(std::string(av[i]));
+	}
+	std::cout << std::endl;
+	return (0);
 }
