@@ -155,3 +155,6 @@ int	main(int ac, char **) {
 	std::cout << "Exiting phonebook" << std::endl;
 	return (0);
 }
+
+//todo
+//change functions to methods
