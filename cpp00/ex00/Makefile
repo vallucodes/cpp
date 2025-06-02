@@ -1,8 +1,8 @@
-NAME = megaphone
-CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++11
+NAME		= megaphone
+CXX			= c++
+CXXFLAGS	= -Wall -Wextra -Werror -std=c++11
 
-SRCS = megaphone.cpp
+SRCS		= megaphone.cpp
 
 all:$(NAME)
 

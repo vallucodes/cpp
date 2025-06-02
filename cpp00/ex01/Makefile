@@ -1,15 +1,15 @@
-NAME = phonebook
-CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++11
+NAME		= phonebook
+CXX			= c++
+CXXFLAGS	= -Wall -Wextra -Werror -std=c++11
 
-SRC_DIR = src/
-OBJ_DIR = obj/
+SRC_DIR		= src/
+OBJ_DIR		= obj/
 
-INCLUDES = -I ./inc
+INCLUDES	= -I ./inc
 HEADERS		= $(wildcard inc/*.hpp)
 
-SRCS = $(wildcard src/*.cpp)
-OBJS = $(patsubst $(SRC_DIR)%.cpp,$(OBJ_DIR)%.o,$(SRCS))
+SRCS		= $(wildcard src/*.cpp)
+OBJS		= $(patsubst $(SRC_DIR)%.cpp,$(OBJ_DIR)%.o,$(SRCS))
 
 all:$(NAME)
 
