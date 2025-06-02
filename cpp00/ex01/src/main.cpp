@@ -52,8 +52,9 @@ bool	display_current_table(PhoneBook pb) {
 		std::cout << std::setw(10) << format_field(c.getFirstName()) << " | ";
 		std::cout << std::setw(10) << format_field(c.getLastName()) << " | ";
 		std::cout << std::setw(10) << format_field(c.getNickname()) << " | " <<
-		std::endl << std::endl;
+		std::endl;
 	}
+	std::cout << std::endl;
 	return (true);
 }
 
@@ -83,7 +84,10 @@ void	search_contact(PhoneBook pb) {
 		if (std::cin.eof())
 			exit_function();
 		if (input == "RETURN")
+		{
+			std::cout << std::endl;
 			break ;
+		}
 		if (!is_valid(input, pb))
 		{
 			std::cout << "Given index invalid.\n";
@@ -97,26 +101,7 @@ void	search_contact(PhoneBook pb) {
 	}
 }
 
-std::string	readInput(const std::string& prompt) {
-	std::string input;
 
-	std::cout << prompt;
-	if (!std::getline(std::cin, input))
-		exit_function();
-	if (std::cin.eof())
-		exit_function();
-	return (input);
-}
-
-void	add_contact(PhoneBook& pb, size_t& i) {
-	std::string	first_name = readInput("First name: ");
-	std::string	last_name = readInput("Last name: ");
-	std::string	nickname = readInput("Nickname: ");
-	std::string	phone_number = readInput("Phone number: ");
-	std::string	darkest_secret = readInput("Darkest secret: ");
-	pb.setContact(i, Contact(first_name, last_name, nickname, phone_number, darkest_secret));
-	i = (i + 1) % 8;
-}
 
 void	intro_prompt() {
 	std::cout << "This is phonebook. Available commands: " << std::endl;
@@ -148,7 +133,7 @@ int	main(int ac, char **) {
 		if (std::cin.eof())
 			exit_function();
 		if (input == "add")
-			add_contact(pbook, i);
+			pbook.addContact(pbook, i);
 		else if (input == "sea")
 			search_contact(pbook);
 	}
