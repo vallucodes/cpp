@@ -13,7 +13,6 @@ class PhoneBook
 		void			setContact(int index, const Contact& contact);
 		bool			isContactSet(int index) const;
 		std::string		readInput(const std::string& prompt);
-		void			addContact(PhoneBook& pb, size_t& i);
 };
 
 #endif
