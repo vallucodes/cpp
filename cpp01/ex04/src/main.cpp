@@ -13,21 +13,19 @@ std::string	replace_content(std::string line, std::string replace, std::string r
 			break ;
 		line.erase(pos, replace.length());
 		line.insert(pos, replacer);
-		// pos += replacer.length();
+		pos += replacer.length();
 	}
 	return (line);
 }
 
 int	main(int ac, char **av) {
-	if (ac != 4)
-	{
-		std::cerr << "Wrong amount of arguments. Usage: ./filehell filename string1 string2" << std::endl;
+	if (ac != 4) {
+		std::cerr << "Wrong amount of arguments. Usage: ./filehell infile replace replacer" << std::endl;
 		return (1);
 	}
 
 	std::ifstream infile(av[1]);
-	if (!infile.is_open())
-	{
+	if (!infile.is_open()) {
 		std::cerr << "Could not open the file for reading." << std::endl;
 		return (1);
 	}
@@ -35,9 +33,9 @@ int	main(int ac, char **av) {
 	std::string	line;
 	std::string	newline;
 	std::string	outfile_name = std::string(av[1]) + ".replace";
+
 	std::ofstream outfile(outfile_name);
-	if (!outfile.is_open())
-	{
+	if (!outfile.is_open()) {
 		std::cerr << "Could not open the file for writing." << std::endl;
 		return (1);
 	}

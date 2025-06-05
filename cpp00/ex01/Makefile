@@ -6,9 +6,13 @@ SRC_DIR		= src/
 OBJ_DIR		= obj/
 
 INCLUDES	= -I ./inc
-HEADERS		= $(wildcard inc/*.hpp)
+HEADERS		= inc/Contact.hpp \
+				inc/Phonebook.hpp
 
-SRCS		= $(wildcard src/*.cpp)
+SRCS		= src/main.cpp \
+				src/Contact.cpp \
+				src/Phonebook.cpp
+
 OBJS		= $(patsubst $(SRC_DIR)%.cpp,$(OBJ_DIR)%.o,$(SRCS))
 
 all:$(NAME)

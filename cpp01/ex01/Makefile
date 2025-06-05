@@ -6,9 +6,12 @@ SRC_DIR		= src/
 OBJ_DIR		= obj/
 
 INCLUDES	= -I ./inc
-HEADERS		= $(wildcard inc/*.hpp)
+HEADERS		= inc/Zombie.hpp
 
-SRCS		= $(wildcard src/*.cpp)
+SRCS		= src/main.cpp \
+				src/Zombie.cpp \
+				src/zombieHorde.cpp
+
 OBJS		= $(patsubst $(SRC_DIR)%.cpp,$(OBJ_DIR)%.o,$(SRCS))
 
 all:$(NAME)

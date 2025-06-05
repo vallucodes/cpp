@@ -2,16 +2,18 @@
 #include <iostream>
 
 int	main() {
-	std::string	z1 = "Turo";
-	std::string	z2 = "Jukka";
+	std::string	name1 = "Turo";
+	std::string	name2 = "Jukka";
+	Zombie* zombie1;
 
-	Zombie* zombie1 = newZombie(z1);
-	if (zombie1 == nullptr)
-	{
-		std::cerr << "Memory allocation failed" << std::endl;
+	try {
+		zombie1 = newZombie(name1);
+	}
+	catch (const std::bad_alloc& e) {
+		std::cerr << "Memory allocation failed: " << e.what() << std::endl;
 		return (1);
 	}
-	randomChump(z2);
+	randomChump(name2);
 	delete zombie1;
 	return (0);
 }

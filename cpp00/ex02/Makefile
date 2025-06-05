@@ -6,9 +6,11 @@ SRC_DIR		= src/
 OBJ_DIR		= obj/
 
 INCLUDES	= -I ./inc
-HEADERS		= $(wildcard inc/*.hpp)
+HEADERS		= inc/Account.hpp
 
-SRCS		= $(wildcard src/*.cpp)
+SRCS		= src/Account.cpp \
+				src/tests.cpp
+
 OBJS		= $(patsubst $(SRC_DIR)%.cpp,$(OBJ_DIR)%.o,$(SRCS))
 
 all:$(NAME)

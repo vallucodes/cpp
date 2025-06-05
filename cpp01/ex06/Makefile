@@ -1,25 +1,30 @@
-NAME		= filehell
+NAME		= harlFilter
 CXX			= c++
 CXXFLAGS	= -Wall -Wextra -Werror -std=c++11
 
 SRC_DIR		= src/
 OBJ_DIR		= obj/
 
-SRCS		= src/main.cpp
+INCLUDES	= -I ./inc
+HEADERS		= inc/Harl.hpp
+
+SRCS		= src/main.cpp \
+				src/Harl.cpp \
+				src/tests.cpp
+
 OBJS		= $(patsubst $(SRC_DIR)%.cpp,$(OBJ_DIR)%.o,$(SRCS))
 
 all:$(NAME)
 
-$(NAME): $(OBJS)
-	$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
+$(NAME): $(OBJS) $(HEADERS)
+	$(CXX) $(CXXFLAGS) $(OBJS) $(INCLUDES) -o $(NAME)
 
-$(OBJ_DIR)%.o: $(SRC_DIR)%.cpp
+$(OBJ_DIR)%.o: $(SRC_DIR)%.cpp $(HEADERS)
 	@mkdir -p $(OBJ_DIR)
-	$(CXX) $(CXXFLAGS) -c $< -o $@
+	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
 
 clean:
 	rm -rf $(OBJ_DIR)
-	rm -f testing/input/*.replace
 
 fclean: clean
 	rm -f $(NAME)

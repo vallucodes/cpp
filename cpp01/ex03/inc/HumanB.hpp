@@ -1,12 +1,14 @@
-#pragma once
-#include "Weapon.hpp"
-#include <iostream>
+#ifndef HUMANB_HPP
+# define HUMANB_HPP
+
+# include "Weapon.hpp"
+# include <iostream>
 
 class HumanB
 {
 	private:
 		std::string	_Name;
-		Weapon* 	_Weapon;
+		Weapon		*_Weapon;
 
 	public:
 		HumanB(std::string name);
@@ -14,3 +16,5 @@ class HumanB
 		void	attack();
 		void	setWeapon(Weapon& weapon);
 };
+
+#endif
