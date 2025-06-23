@@ -1,5 +1,4 @@
 #pragma once
-#include "Fixed.hpp"
 #include <iostream>
 
 class Fixed {
