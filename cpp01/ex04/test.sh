@@ -34,7 +34,7 @@ chmod 444 "$TEST_DIR"  # Read-only directory
 
 # Create file for test 9
 
-# Test cases for argument count and basic errors
+# Test cases for argument count and basic errors 
 error_test_cases=(
 	"E0:testing/input8.txt"
 	"E1:testing/input9.txt:only_one"
