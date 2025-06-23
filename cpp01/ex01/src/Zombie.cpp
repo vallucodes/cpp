@@ -1,4 +1,4 @@
-#include "./../inc/Zombie.hpp"
+#include "../inc/Zombie.hpp"
 
 Zombie::Zombie(std::string name) {
 	_Name = name;

@@ -1,10 +1,10 @@
 NAME		= hi_this_is_brain
 CXX			= c++
-CXXFLAGS	= -Wall -Wextra #-Werror -std=c++11
+CXXFLAGS	= -Wall -Wextra -Werror -std=c++11
 
 OBJ_DIR		= obj/
 
-SRCS		= $(wildcard *.cpp)
+SRCS		= main.cpp
 OBJS		= $(patsubst %.cpp,$(OBJ_DIR)%.o,$(SRCS))
 
 all:$(NAME)
