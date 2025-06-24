@@ -1,5 +1,5 @@
 #include "Contact.hpp"
-#include "Phonebook.hpp"
+#include "PhoneBook.hpp"
 #include <iostream>
 
 Contact::Contact(std::string fname, std::string lname, std::string nname,

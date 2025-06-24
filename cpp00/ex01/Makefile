@@ -7,15 +7,15 @@ OBJ_DIR		= obj/
 
 INCLUDES	= -I ./inc
 HEADERS		= inc/Contact.hpp \
-				inc/Phonebook.hpp
+				inc/PhoneBook.hpp
 
 SRCS		= src/main.cpp \
 				src/Contact.cpp \
-				src/Phonebook.cpp
+				src/PhoneBook.cpp
 
 OBJS		= $(patsubst $(SRC_DIR)%.cpp,$(OBJ_DIR)%.o,$(SRCS))
 
-all:$(NAME)
+all: $(NAME)
 
 $(NAME): $(OBJS) $(HEADERS)
 	$(CXX) $(CXXFLAGS) $(OBJS) $(INCLUDES) -o $(NAME)

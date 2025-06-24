@@ -13,7 +13,7 @@ SRCS		= src/Account.cpp \
 
 OBJS		= $(patsubst $(SRC_DIR)%.cpp,$(OBJ_DIR)%.o,$(SRCS))
 
-all:$(NAME)
+all: $(NAME)
 
 $(NAME): $(OBJS) $(HEADERS)
 	$(CXX) $(CXXFLAGS) $(OBJS) $(INCLUDES) -o $(NAME)

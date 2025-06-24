@@ -2,8 +2,8 @@
 
 void	Harl::debug( void ) {
 	std::cout << "[ DEBUG ]" << std::endl;
-	std::cout << "I love having extra bacon for my 7XL-double-cheese-\
-triple-pickle-special-ketchup burger. I really do!" << std::endl << std::endl;
+	std::cout << "I love having extra bacon for my 420XL-double-cheese-\
+undecuple-pickle-special-ketchup burger. I really do!" << std::endl << std::endl;
 }
 
 void	Harl::info( void ) {

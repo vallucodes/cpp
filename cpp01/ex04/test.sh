@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # 0. no match
 # 1. one occurrence
 # 2. multiple occurrences on different lines and on same line
@@ -12,12 +14,9 @@
 # E10. non-existent infile
 # E11. no permissions outfile
 
-#!/bin/bash
-
 # Compile with make
 if ! make > /dev/null 2> /dev/null; then
 	echo "Compilation failed!"
-	make
 	exit 1
 fi
 
@@ -38,7 +37,7 @@ chmod 444 "$TEST_DIR"  # Read-only directory
 echo "Some content in infile" > "$TEST_FILE2"
 chmod 0 "$TEST_FILE2"
 
-# Test cases for argument count and basic errors 
+# Test cases for argument count and basic errors
 error_test_cases=(
 	"testing/input/input8.txt"
 	"testing/input/$TEST_FILE2:arg1:arg2"
@@ -52,15 +51,14 @@ for i in "${!error_test_cases[@]}"; do
 
 	# Parse test case
 	IFS=':' read -a PARTS <<< "${error_test_cases[$i]}"
-	test_id="${PARTS[0]}"
-	input_file="${PARTS[1]}"
-	arg1="${PARTS[2]:-}"
-	arg2="${PARTS[3]:-}"
+	input_file="${PARTS[0]}"
+	arg1="${PARTS[1]:-}"
+	arg2="${PARTS[2]:-}"
 
 	# Build command
-	if [ ${#PARTS[@]} -eq 2 ]; then
+	if [ ${#PARTS[@]} -eq 1 ]; then
 		cmd=("./$EXE" "$input_file")
-	elif [ ${#PARTS[@]} -eq 3 ]; then
+	elif [ ${#PARTS[@]} -eq 2 ]; then
 		cmd=("./$EXE" "$input_file" "$arg1")
 	else
 		cmd=("./$EXE" "$input_file" "$arg1" "$arg2")

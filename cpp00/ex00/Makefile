@@ -4,7 +4,7 @@ CXXFLAGS	= -Wall -Wextra -Werror -std=c++11
 
 SRCS		= megaphone.cpp
 
-all:$(NAME)
+all: $(NAME)
 
 $(NAME): $(SRCS)
 	$(CXX) $(CXXFLAGS) -o $(NAME) $(SRCS)

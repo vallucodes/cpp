@@ -7,7 +7,7 @@ OBJ_DIR		= obj/
 SRCS		= main.cpp
 OBJS		= $(patsubst %.cpp,$(OBJ_DIR)%.o,$(SRCS))
 
-all:$(NAME)
+all: $(NAME)
 
 $(NAME): $(OBJS)
 	$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)

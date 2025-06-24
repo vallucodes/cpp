@@ -2,8 +2,8 @@
 #include <iostream>
 
 int	main() {
-	std::string	name1 = "Turo";
-	std::string	name2 = "Jukka";
+	std::string	name1 = "Unelma Sirpa-Leena";
+	std::string	name2 = "Turo";
 	Zombie* zombie1;
 
 	try {

@@ -1,4 +1,4 @@
-NAME		= filehell
+NAME		= fixed-point_num
 CXX			= c++
 CXXFLAGS	= -Wall -Wextra -Werror -std=c++11
 
@@ -6,10 +6,11 @@ SRC_DIR		= src/
 OBJ_DIR		= obj/
 
 INCLUDES	= -I ./inc
-HEADERS		= inc/replace.hpp
+HEADERS		= inc/Fixed.hpp
 
 SRCS		= src/main.cpp \
-				src/replace.cpp
+				src/Fixed.cpp
+				
 OBJS		= $(patsubst $(SRC_DIR)%.cpp,$(OBJ_DIR)%.o,$(SRCS))
 
 all: $(NAME)
@@ -23,7 +24,6 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.cpp $(HEADERS)
 
 clean:
 	rm -rf $(OBJ_DIR)
-	rm -f testing/input/*.replace
 
 fclean: clean
 	rm -f $(NAME)

@@ -1,5 +1,5 @@
 #include "Contact.hpp"
-#include "Phonebook.hpp"
+#include "PhoneBook.hpp"
 #include <iostream>
 #include <iomanip>
 
@@ -154,8 +154,9 @@ void	addContact(PhoneBook& pb, size_t& i) {
 	darkest_secret = readInput("Darkest secret: ");
 	if (darkest_secret.empty())
 		return ;
-	std::cout << std::endl;
 	pb.setContact(i, Contact(first_name, last_name, nickname, phone_number, darkest_secret));
+	std::cout << "Contact added" << std::endl;
+	std::cout << std::endl;
 	i = (i + 1) % 8;
 }
 
@@ -178,9 +179,9 @@ int	main(int ac, char **) {
 			exitFunction();
 		if (std::cin.eof())
 			exitFunction();
-		if (input == "add")
+		if (input == "ADD")
 			addContact(pbook, i);
-		else if (input == "sea")
+		else if (input == "SEARCH")
 			searchContact(pbook);
 	}
 	std::cout << "Exiting phonebook" << std::endl;
