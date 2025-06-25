@@ -17,18 +17,23 @@ class Fixed {
 		int		getRawBits( void ) const;
 		void	setRawBits( int const raw );
 
-		bool	operator>(const Fixed& other ) const;
-		bool	operator<(const Fixed& other ) const;
-		bool	operator>=(const Fixed& other ) const;
-		bool	operator<=(const Fixed& other ) const;
-		bool	operator==(const Fixed& other ) const;
-		bool	operator!=(const Fixed& other ) const;
+		bool	operator>( const Fixed& other ) const;
+		bool	operator<( const Fixed& other ) const;
+		bool	operator>=( const Fixed& other ) const;
+		bool	operator<=( const Fixed& other ) const;
+		bool	operator==( const Fixed& other ) const;
+		bool	operator!=( const Fixed& other ) const;
 
-		Fixed	operator+(const Fixed& other ) const;
-		Fixed	operator-(const Fixed& other ) const;
-		Fixed	operator*(const Fixed& other ) const;
-		Fixed	operator/(const Fixed& other ) const;
-		~Fixed();
+		Fixed	operator+( const Fixed& other ) const;
+		Fixed	operator-( const Fixed& other ) const;
+		Fixed	operator*( const Fixed& other ) const;
+		Fixed	operator/( const Fixed& other ) const;
+
+		Fixed&	operator++( void );
+		Fixed	operator++( int );
+		Fixed&	operator--( void );
+		Fixed	operator--( int );
+		~Fixed() {};
 };
 
 std::ostream&	operator<<( std::ostream& out, const Fixed& value );
