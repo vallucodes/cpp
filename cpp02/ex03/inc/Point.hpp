@@ -13,6 +13,6 @@ class Point {
 		Point( const Point& point );
 		~Point();
 		Point&	operator=( const Point& point ) = delete;
-		float	getXPoint( void ) const;
-		float	getYPoint( void ) const;
+		Fixed	getX( void ) const;
+		Fixed	getY( void ) const;
 };

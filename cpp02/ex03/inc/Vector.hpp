@@ -1,5 +1,6 @@
 #pragma once
 #include "../inc/Fixed.hpp"
+#include "../inc/Point.hpp"
 
 class Vector {
 	private:
@@ -7,7 +8,10 @@ class Vector {
 		const Fixed	_y;
 
 	public:
-		Point( void );
-		Point( const float nb1, const float nb2 );
-		~Point();
+		Vector( void );
+		Vector( const Point& a, const Point& b );
+		// &	operator-( const Vectort& v1 );
+		~Vector();
+		Fixed	getX( void ) const;
+		Fixed	getY( void ) const;
 };

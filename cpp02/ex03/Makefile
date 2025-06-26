@@ -8,12 +8,14 @@ OBJ_DIR		= obj/
 INCLUDES	= -I ./inc
 HEADERS		= inc/bsp.hpp \
 				inc/Fixed.hpp \
-				inc/Point.hpp
+				inc/Point.hpp \
+				inc/Vector.hpp
 
 SRCS		= src/main.cpp \
 				src/bsp.cpp \
 				src/Fixed.cpp \
-				src/Point.cpp
+				src/Point.cpp \
+				src/Vector.cpp
 
 OBJS		= $(patsubst $(SRC_DIR)%.cpp,$(OBJ_DIR)%.o,$(SRCS))
 

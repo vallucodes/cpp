@@ -11,10 +11,10 @@ Point::Point( const Point& other ) : _x(other._x), _y(other._y) {}
 Point::~Point() = default;
 
 
-float	Point::getXPoint( void ) const {
-	return(_x.toFloat());
+Fixed	Point::getX( void ) const {
+	return(_x);
 }
 
-float	Point::getYPoint( void ) const {
-	return(_y.toFloat());
+Fixed	Point::getY( void ) const {
+	return(_y);
 }
