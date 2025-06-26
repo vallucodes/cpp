@@ -1,4 +1,4 @@
-NAME		= fixed-point_num
+NAME		= bsp
 CXX			= c++
 CXXFLAGS	= -Wall -Wextra -Werror -std=c++11
 
@@ -6,11 +6,15 @@ SRC_DIR		= src/
 OBJ_DIR		= obj/
 
 INCLUDES	= -I ./inc
-HEADERS		= inc/Fixed.hpp
+HEADERS		= inc/bsp.hpp \
+				inc/Fixed.hpp \
+				inc/Point.hpp
 
 SRCS		= src/main.cpp \
-				src/Fixed.cpp
-				
+				src/bsp.cpp \
+				src/Fixed.cpp \
+				src/Point.cpp
+
 OBJS		= $(patsubst $(SRC_DIR)%.cpp,$(OBJ_DIR)%.o,$(SRCS))
 
 all: $(NAME)
