@@ -5,7 +5,7 @@ int main( void ) {
 	Fixed a;
 	Fixed const b( Fixed( 5.05f ) * Fixed ( 2 ) );
 	Fixed const c( Fixed( 30.5f ) / Fixed ( 2 ) );
-	Fixed const d( Fixed( 5.05f ) + Fixed ( 2 ) );
+	Fixed const d( Fixed( -5.05f ) + Fixed ( 2 ) );
 	Fixed const e( Fixed( 5.05f ) - Fixed ( 2 ) );
 	Fixed const f( Fixed( 5.05f ) - Fixed ( 2 ) );
 	Fixed g( 7.8f );

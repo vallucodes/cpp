@@ -13,7 +13,7 @@ Fixed::Fixed( const Fixed& other ) {
 
 Fixed::Fixed( const int nb ) {
 	std::cout << "Int constructor called" << std::endl;
-	this->nb = nb * 256;
+	this->nb = nb << fractional_bits;
 	std::cout << "Saved number is: " << this->nb << std::endl;
 }
 
@@ -46,10 +46,7 @@ float	Fixed::toFloat( void ) const {
 }
 
 int		Fixed::toInt( void ) const {
-	int	res;
-
-	res = nb >> fractional_bits;
-	return (res);
+	return (nb >> fractional_bits);
 }
 
 int Fixed::getRawBits( void ) const {

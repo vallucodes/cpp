@@ -25,10 +25,7 @@ float	Fixed::toFloat( void ) const {
 }
 
 int		Fixed::toInt( void ) const {
-	int	res;
-
-	res = nb >> fractional_bits;
-	return (res);
+	return (nb >> fractional_bits);
 }
 
 int	Fixed::getRawBits( void ) const {
@@ -73,21 +70,18 @@ bool	Fixed::operator!=( const Fixed& other ) const {
 	return (this->getRawBits() != other.getRawBits());
 }
 
-
 Fixed	Fixed::operator+( const Fixed& other ) const {
 	Fixed		result;
-	long long	raw_result;
 
-	raw_result = this->getRawBits() + other.getRawBits();
+	int	raw_result = this->getRawBits() + other.getRawBits();
 	result.setRawBits(raw_result);
 	return (result);
 }
 
 Fixed	Fixed::operator-( const Fixed& other ) const {
-	Fixed		result;
-	long long	raw_result;
+	Fixed	result;
 
-	raw_result = this->getRawBits() - other.getRawBits();
+	int	raw_result = this->getRawBits() - other.getRawBits();
 	result.setRawBits(raw_result);
 	return (result);
 }

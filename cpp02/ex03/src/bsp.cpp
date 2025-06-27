@@ -3,8 +3,10 @@
 #include "../inc/Vector.hpp"
 #include "../inc/bsp.hpp"
 
-static bool	vector_cross( Vector A, Vector B ) {
+static CrossResult	vector_cross( Vector A, Vector B ) {
 	Fixed	res = A.getX() * B.getY() - A.getY() * B.getX();
+	if (res == Fixed(0))
+		return (INVALID_TRIANGLE);
 	if (res > Fixed(0))
 		return (PLUS);
 	return (MINUS);
@@ -21,7 +23,11 @@ bool	bsp( Point const a, Point const b, Point const c, Point const point) {
 	Vector ca(c, a);
 	Vector cp(c, point);
 
-	// todo check its triangle
+	if (vector_cross(ab, ac) == INVALID_TRIANGLE)
+	{
+		std::cerr << "Triangle not valid" << std::endl;
+		return (0);
+	}
 	inside = vector_cross(ab, ac);
 	cross_product = vector_cross(ab, ap);
 	if (cross_product != inside)

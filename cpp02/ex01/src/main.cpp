@@ -27,10 +27,5 @@ int main( void ) {
 	std::cout << "f is " << f.toInt() << " as integer" << std::endl;
 	std::cout << "h is " << h.toInt() << " as integer" << std::endl << std::endl;
 
-	std::cout << "a is " << a.toFloat() << " as float" << std::endl;
-	std::cout << "b is " << b.toFloat() << " as float" << std::endl;
-	std::cout << "c is " << c.toFloat() << " as float" << std::endl;
-	std::cout << "d is " << d.toFloat() << " as float" << std::endl;
-
 	return 0;
 }

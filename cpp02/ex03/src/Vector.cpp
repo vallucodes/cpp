@@ -7,6 +7,8 @@ Vector::Vector( const Point& a, const Point& b ) :
 	_y( b.getY() - a.getY())
 {}
 
+Vector::Vector( const Vector& other ) : _x(other._x), _y(other._y) {}
+
 Vector::~Vector() {}
 
 Fixed	Vector::getX( void ) const {

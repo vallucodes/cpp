@@ -10,8 +10,9 @@ class Vector {
 	public:
 		Vector( void );
 		Vector( const Point& a, const Point& b );
-		// &	operator-( const Vectort& v1 );
+		Vector( const Vector& other );
 		~Vector();
+		Vector&	operator=( const Vector& other ) = delete;
 		Fixed	getX( void ) const;
 		Fixed	getY( void ) const;
 };

@@ -1,5 +1,6 @@
 #include <iostream>
 #include "../inc/Fixed.hpp"
+#include "../inc/Point.hpp"
 #include "../inc/bsp.hpp"
 
 void test1() {
@@ -51,6 +52,12 @@ void test7() {
 			<< (inside ? "inside" : "outside") << std::endl;
 }
 
+void test8() {
+	std::cout << "Test 8: triangle not valid: " << std::endl;
+	Point a(0, 0), b(3, 0), c(-3, 0), point(1, -1);
+	bsp(a, b, c, point);
+}
+
 int main(void) {
 	test1();
 	test2();
@@ -59,5 +66,6 @@ int main(void) {
 	test5();
 	test6();
 	test7();
+	test8();
 	return 0;
 }
