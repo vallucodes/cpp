@@ -7,6 +7,7 @@ OBJ_DIR		= obj/
 
 INCLUDES	= -I ./inc
 HEADERS		= inc/Animal.hpp \
+				inc/Brain.hpp \
 				inc/Cat.hpp \
 				inc/Dog.hpp \
 				inc/WrongAnimal.hpp \
@@ -14,10 +15,11 @@ HEADERS		= inc/Animal.hpp \
 
 SRCS		= src/main.cpp \
 				src/Animal.cpp \
+				src/Brain.cpp \
 				src/Cat.cpp \
 				src/Dog.cpp \
 				src/WrongAnimal.cpp \
-				src/WrongCat.cpp
+				src/WrongCat.cpp \
 
 OBJS		= $(patsubst $(SRC_DIR)%.cpp,$(OBJ_DIR)%.o,$(SRCS))
 

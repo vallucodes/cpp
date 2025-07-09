@@ -8,37 +8,29 @@
 void	test1() {
 	std::cout << std::endl << "Test 1: Basic test" << std::endl << std::endl;
 
-	const Animal* meta = new Animal();
 	const Animal* j = new Dog();
 	const Animal* i = new Cat();
-
-	std::cout << std::endl;
-	std::cout << j->getType() << " " << std::endl;
-	std::cout << i->getType() << " " << std::endl;
-	i->makeSound();
-	j->makeSound();
-	meta->makeSound();
-	std::cout << std::endl;
-
-	delete meta;
-	delete i;
 	delete j;
+	delete i;
 }
 
 void	test2() {
-	std::cout << std::endl << "Test 2: WrongAnimal and WrongCat" << std::endl << std::endl;
+	int	amount = 10;
 
-	const WrongAnimal* meta = new WrongAnimal();
-	const WrongAnimal* i = new WrongCat();
+	Animal* animals[amount];
 
-	std::cout << std::endl;
-	std::cout << i->getType() << " " << std::endl;
-	i->makeSound();
-	meta->makeSound();
-	std::cout << std::endl;
+	for (int i = 0; i < amount; i++)
+	{
+		if (i < amount / 2)
+			animals[i] = new Cat();
+		else
+			animals[i] = new Dog();
+	}
 
-	delete meta;
-	delete i;
+	for (int i = 0; i < amount / 2; i++)
+		delete animals[i];
+	
+
 }
 
 void	test3() {
