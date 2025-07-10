@@ -1,4 +1,4 @@
-NAME		= Cats_and_dogs
+NAME		= Materia
 CXX			= c++
 CXXFLAGS	= -Wall -Wextra -Werror -std=c++11
 
@@ -6,16 +6,14 @@ SRC_DIR		= src/
 OBJ_DIR		= obj/
 
 INCLUDES	= -I ./inc
-HEADERS		= inc/Animal.hpp \
-				inc/Brain.hpp \
-				inc/Cat.hpp \
-				inc/Dog.hpp
+HEADERS		= inc/AMateria.hpp \
+				inc/Cure.hpp \
+				inc/Ice.hpp
 
 SRCS		= src/main.cpp \
-				src/Animal.cpp \
-				src/Brain.cpp \
-				src/Cat.cpp \
-				src/Dog.cpp
+				src/AMateria.cpp \
+				src/Cure.cpp \
+				src/Ice.cpp
 
 OBJS		= $(patsubst $(SRC_DIR)%.cpp,$(OBJ_DIR)%.o,$(SRCS))
 

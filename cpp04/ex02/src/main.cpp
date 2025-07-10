@@ -6,6 +6,34 @@
 void	test1() {
 	std::cout << std::endl << "Test 1: Basic test" << std::endl << std::endl;
 
+	const Cat* cat = new Cat();
+	const Dog* dog = new Dog();
+	const Animal* animalistic_cat = new Cat();
+	const Cat& animalistic_cat_derived = dynamic_cast<const Cat&>(*animalistic_cat);
+
+	std::cout << std::endl;
+	std::cout << animalistic_cat_derived.getBrain()->getIdea(0) << std::endl;
+
+	std::cout << std::endl;
+	delete cat;
+	delete dog;
+}
+
+// void	test2() {
+// 	std::cout << std::endl << "Test 2: Create Animal object by allocating" << std::endl << std::endl;
+
+// 	Animal* animal = new Animal();
+// }
+
+// void	test3() {
+// 	std::cout << std::endl << "Test 3: Create Animal object" << std::endl << std::endl;
+
+// 	Animal animal;
+// }
+
+void	test4() {
+	std::cout << std::endl << "Test 4: Basic test" << std::endl << std::endl;
+
 	const Animal* j = new Dog();
 	const Animal* i = new Cat();
 	std::cout << std::endl;
@@ -13,8 +41,8 @@ void	test1() {
 	delete i;
 }
 
-void	test2() {
-	std::cout << std::endl << "Test 2: Multiple test" << std::endl << std::endl;
+void	test5() {
+	std::cout << std::endl << "Test 5: Multiple test" << std::endl << std::endl;
 
 	int	amount = 10;
 
@@ -33,8 +61,8 @@ void	test2() {
 
 }
 
-void	test3() {
-	std::cout << std::endl << "Test 3: Test deepcopy cat, copy constructor" << std::endl << std::endl;
+void	test6() {
+	std::cout << std::endl << "Test 6: Test deepcopy cat, copy constructor" << std::endl << std::endl;
 
 	Cat* kitty = new Cat();
 
@@ -62,8 +90,8 @@ void	test3() {
 	delete cat;
 }
 
-void	test4() {
-	std::cout << std::endl << "Test 4: Test deepcopy cat, copy assignment constructor" << std::endl << std::endl;
+void	test7() {
+	std::cout << std::endl << "Test 7: Test deepcopy cat, copy assignment constructor" << std::endl << std::endl;
 
 	Cat* kitty = new Cat();
 	Cat* cat = new Cat();
@@ -89,8 +117,8 @@ void	test4() {
 	delete cat;
 }
 
-void	test5() {
-	std::cout << std::endl << "Test 5: Test deepcopy dog, copy constructor" << std::endl << std::endl;
+void	test8() {
+	std::cout << std::endl << "Test 8: Test deepcopy dog, copy constructor" << std::endl << std::endl;
 
 	Dog* puppy = new Dog();
 
@@ -115,8 +143,8 @@ void	test5() {
 	delete dog;
 }
 
-void	test6() {
-	std::cout << std::endl << "Test 6: Test deepcopy Dog, copy assignment constructor" << std::endl << std::endl;
+void	test9() {
+	std::cout << std::endl << "Test 9: Test deepcopy Dog, copy assignment constructor" << std::endl << std::endl;
 
 	Dog* puppy = new Dog();
 	Dog* dog = new Dog();
@@ -146,8 +174,13 @@ int	main() {
 	test1();
 	// test2();
 	// test3();
+
+	// Tests below testing that previous stuff still works as before
 	// test4();
 	// test5();
 	// test6();
+	// test7();
+	// test8();
+	// test9();
 	return (0);
 }

@@ -1,4 +1,4 @@
-NAME		= Cats_and_dogs
+NAME		= Animal_abstract
 CXX			= c++
 CXXFLAGS	= -Wall -Wextra -Werror -std=c++11
 
