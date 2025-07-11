@@ -25,7 +25,7 @@ ScavTrap& ScavTrap::operator=( const ScavTrap& other ) {
 }
 
 ScavTrap::~ScavTrap( void ) {
-	std::cout << "ScavTrap Destructor called, object name: " << _name << std::endl;
+	std::cout << "ScavTrap destructor called, object name: " << _name << std::endl;
 }
 
 void	ScavTrap::attack( const std::string& target ) {
@@ -42,5 +42,10 @@ void	ScavTrap::attack( const std::string& target ) {
 }
 
 void	ScavTrap::guardGate() const {
-	std::cout << "ScavTrap " << _name << " is now in a Gate keeper mode" <<std::endl;
+	if (_hitPoints == 0)
+		std::cout << "ScavTrap " << _name << " is already dead" << std::endl;
+	else if (_energyPoints == 0)
+		std::cout << "ScavTrap " << _name << " doesn't have enought energy points!" <<std::endl;
+	else
+		std::cout << "ScavTrap " << _name << " is now in a Gate keeper mode" <<std::endl;
 }

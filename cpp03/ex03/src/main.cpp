@@ -109,6 +109,7 @@ void	test6() {
 	std::cout << std::endl;
 }
 
+// commented lines are not available to the current object level
 void	test7() {
 	std::cout << std::endl << "Test 7: upcasting. Access all of the parent objects" << std::endl << std::endl;
 
@@ -150,12 +151,12 @@ void	test8() {
 
 int	main() {
 	test1();
-	// test2();
-	// test3();
-	// test4();
-	// test5();
-	// test6();
-	// test7();
-	// test8();
+	test2();
+	test3();
+	test4();
+	test5();
+	test6();
+	test7();
+	test8();
 	return (0);
 }

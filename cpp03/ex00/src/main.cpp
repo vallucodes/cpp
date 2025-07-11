@@ -47,17 +47,6 @@ int	main() {
 		b.takeDamage(3);
 		b.beRepaired(2);
 		b.beRepaired(2);
-		b.beRepaired(2);
-		b.beRepaired(2);
-		b.beRepaired(2);
-		b.beRepaired(2);
-		b.beRepaired(2);
-		b.beRepaired(2);
-		b.beRepaired(2);
-		b.beRepaired(2);
-		b.beRepaired(2);
-		b.beRepaired(2);
-
 
 		ClapTrap c = b;
 		c.attack("Trebuchet");

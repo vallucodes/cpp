@@ -4,37 +4,49 @@
 
 void	test1() {
 	std::cout << std::endl << "Test 1: create ClapTrap and and ScavTrap" << std::endl << std::endl;
+
 	ClapTrap	a("Settler");
+	std::cout << std::endl;
 	a.attack("Praetorian");
 	a.takeDamage(6);
 	a.beRepaired(10);
 
+	std::cout << std::endl;
 	ScavTrap	b("Teuton knight");
+	std::cout << std::endl;
+
 	b.attack("Phalanx");
 	b.takeDamage(6);
 	b.beRepaired(10);
+	std::cout << std::endl;
 }
 
 void	test2() {
 	std::cout << std::endl << "Test 2: ScavTrap exhausts energypoints by repairs" << std::endl << std::endl;
 
 	ScavTrap	a("Haeduan");
+	std::cout << std::endl;
+
 	a.attack("Axeman");
 	a.takeDamage(15);
 	a.beRepaired(1);
 	a.guardGate();
 	for (int i = 0; i < 55; i++)
 		a.beRepaired(1);
+	std::cout << std::endl;
 }
 
 void	test3() {
 	std::cout << std::endl << "Test 3: default ScavTrap interacts with world" << std::endl << std::endl;
 
 	ScavTrap	a;
+	std::cout << std::endl;
+
 	a.attack("Axeman");
 	a.takeDamage(15);
 	a.beRepaired(1);
 	a.guardGate();
+	std::cout << std::endl;
 }
 
 void	test4() {
@@ -42,6 +54,8 @@ void	test4() {
 
 	ScavTrap	a("Phalanx");
 	a.attack("Equites Imperatoris");
+	std::cout << std::endl;
+
 	a.takeDamage(15);
 	a.beRepaired(1);
 	for (int i = 0; i < 55; i++)
@@ -50,6 +64,7 @@ void	test4() {
 	for (int i = 0; i < 7; i++)
 		a.takeDamage(25);
 	a.beRepaired(1);
+	std::cout << std::endl;
 }
 
 void	test5() {
@@ -57,6 +72,8 @@ void	test5() {
 
 	ScavTrap	a("Equites Imperatoris");
 	ScavTrap	b(a);
+	std::cout << std::endl;
+
 	b.attack("Theutates Thunder");
 	b.takeDamage(25);
 	b.takeDamage(25);
@@ -64,20 +81,25 @@ void	test5() {
 	b.takeDamage(25);
 	b.attack("Spearman");
 	a.takeDamage(25);
+	std::cout << std::endl;
 }
 
 void	test6() {
 	std::cout << std::endl << "Test 6: copy assignment" << std::endl << std::endl;
 
-	ScavTrap	a("Equites Imperatoris");
+	ScavTrap	a("Natarian Knight");
 	ScavTrap	b;
+	std::cout << std::endl;
 
 	b = a;
-	b.attack("Theutates Thunder");
+	std::cout << std::endl;
+	
+	b.attack("Legionnaire");
 	b.takeDamage(25);
 	b.takeDamage(25);
-	b.attack("Spearman");
+	b.attack("");
 	a.takeDamage(25);
+	std::cout << std::endl;
 }
 
 int	main() {

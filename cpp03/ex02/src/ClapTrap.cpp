@@ -68,13 +68,15 @@ void	ClapTrap::takeDamage( unsigned int amount ) {
 }
 
 void	ClapTrap::beRepaired( unsigned int amount ) {
-	if (_energyPoints > 0)
+	if (_energyPoints == 0)
+		std::cout << "ClapTrap " << _name << " doesn't have enought energy points to repair!" <<std::endl;
+	else if (_hitPoints == 0)
+		std::cout << "ClapTrap " << _name << " is already dead" << std::endl;
+	else
 	{
 		_energyPoints -= 1;
 		_hitPoints += amount;
 		std::cout << "ClapTrap " << _name << " is getting repaired by " << amount << " points of health" <<std::endl;
 		std::cout << "New health: " << _hitPoints << std::endl;
 	}
-	else
-		std::cout << "ClapTrap " << _name << " doesn't have enought energy points to repair!" <<std::endl;
 }

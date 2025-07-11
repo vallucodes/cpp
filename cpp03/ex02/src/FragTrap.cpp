@@ -25,20 +25,7 @@ FragTrap& FragTrap::operator=( const FragTrap& other ) {
 }
 
 FragTrap::~FragTrap( void ) {
-	std::cout << "FragTrap Destructor called, object name: " << _name << std::endl;
-}
-
-void	FragTrap::attack( const std::string& target ) {
-	if (_energyPoints > 0 && _hitPoints > 0)
-	{
-		_energyPoints -= 1;
-		std::cout << "FragTrap " << _name << " attacks " << target
-		<< ", causing " << _attackDamage << " damage!" <<std::endl;
-	}
-	else if (_energyPoints == 0)
-		std::cout << "FragTrap " << _name << " doesn't have enought energy points to attack!" <<std::endl;
-	else
-		std::cout << "FragTrap " << _name << " is dead, could not attack!" <<std::endl;
+	std::cout << "FragTrap destructor called, object name: " << _name << std::endl;
 }
 
 void	FragTrap::highFivesGuys( void ) const {

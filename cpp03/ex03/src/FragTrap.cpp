@@ -25,7 +25,7 @@ FragTrap& FragTrap::operator=( const FragTrap& other ) {
 }
 
 FragTrap::~FragTrap( void ) {
-	std::cout << "FragTrap Destructor called, object name: " << _name << std::endl;
+	std::cout << "FragTrap destructor called, object name: " << _name << std::endl;
 }
 
 void	FragTrap::highFivesGuys( void ) const {
