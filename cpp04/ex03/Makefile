@@ -7,10 +7,13 @@ OBJ_DIR		= obj/
 
 INCLUDES	= -I ./inc
 HEADERS		= inc/AMateria.hpp \
+				inc/Character.hpp \
 				inc/Cure.hpp \
-				inc/Ice.hpp
+				inc/Ice.hpp \
+				inc/ICharacter.hpp
 
 SRCS		= src/main.cpp \
+				src/Character.cpp \
 				src/AMateria.cpp \
 				src/Cure.cpp \
 				src/Ice.cpp

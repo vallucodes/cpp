@@ -5,7 +5,7 @@ AMateria::AMateria( void ) : type("default") {
 }
 
 AMateria::AMateria( std::string const & type ) : type(type) {
-	std::cout << "AMateria custom constructor called" << std::endl;
+	std::cout << "AMateria constructor called" << std::endl;
 }
 
 AMateria::AMateria( const AMateria& other ) : type(other.type) {
@@ -28,5 +28,5 @@ std::string const & AMateria::getType() const {
 }
 
 void AMateria::use( ICharacter& target ) {
-	std::cout << type << " used on " << target.getName() << std::endl;
+	std::cout << "\033[1;31m" << type << " used on " << target.getName() << "\033[0m" << std::endl;
 }

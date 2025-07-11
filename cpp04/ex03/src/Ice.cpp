@@ -4,14 +4,14 @@ Ice::Ice( void ) : AMateria("ice") {
 	std::cout << "Ice default constructor called" << std::endl;
 }
 
-Ice::Ice( const Ice& other ) : AMateria(other.getType()) {
+Ice::Ice( const Ice& other ) : AMateria(other) {
 	std::cout << "Ice copy constructor called" << std::endl;
 }
 
 Ice&	Ice::operator=( const Ice& other ) {
 	std::cout << "Ice copy assignment called" << std::endl;
 	if (this != &other)
-		type = other.getType();
+		AMateria::operator=(other);
 	return *this;
 }
 

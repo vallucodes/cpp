@@ -5,14 +5,19 @@
 
 #define INV_SIZE 4
 
-class Character {
+class Character : public ICharacter {
 
 	private:
 		std::string	name;
 		AMateria	*inventory[INV_SIZE];
 
 	public:
-		~Character() {}
+		Character( void );
+		Character( std::string name );
+		Character( const Character& other );
+		Character& operator=( const Character& other );
+		~Character();
+
 		std::string const & getName() const;
 		void equip( AMateria* m );
 		void unequip( int idx );
