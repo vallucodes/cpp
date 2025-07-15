@@ -1,6 +1,6 @@
 NAME		= Materia
 CXX			= c++
-CXXFLAGS	= -Wall -Wextra -Werror -std=c++11
+CXXFLAGS	= -g -Wall -Wextra -Werror -std=c++11
 
 SRC_DIR		= src/
 OBJ_DIR		= obj/
@@ -10,13 +10,16 @@ HEADERS		= inc/AMateria.hpp \
 				inc/Character.hpp \
 				inc/Cure.hpp \
 				inc/Ice.hpp \
-				inc/ICharacter.hpp
+				inc/ICharacter.hpp \
+				inc/IMateriaSource.hpp \
+				inc/MateriaSource.hpp
 
 SRCS		= src/main.cpp \
 				src/Character.cpp \
 				src/AMateria.cpp \
 				src/Cure.cpp \
-				src/Ice.cpp
+				src/Ice.cpp \
+				src/MateriaSource.cpp
 
 OBJS		= $(patsubst $(SRC_DIR)%.cpp,$(OBJ_DIR)%.o,$(SRCS))
 

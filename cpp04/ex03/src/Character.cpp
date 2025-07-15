@@ -18,6 +18,8 @@ Character::Character( const Character& other ) {
 	for (int i = 0; i < INV_SIZE; i++)
 	{
 		if (inventory[i] != nullptr)
+			delete inventory[i];
+		if (other.inventory[i] != nullptr)
 			inventory[i] = other.inventory[i]->clone();
 		else
 			inventory[i] = nullptr;
@@ -32,10 +34,9 @@ Character&	Character::operator=( const Character& other ) {
 		for (int i = 0; i < INV_SIZE; i++)
 		{
 			if (inventory[i] != nullptr)
-			{
 				delete inventory[i];
+			if (other.inventory[i] != nullptr)
 				inventory[i] = other.inventory[i]->clone();
-			}
 			else
 				inventory[i] = nullptr;
 		}

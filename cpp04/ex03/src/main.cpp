@@ -3,6 +3,7 @@
 #include "AMateria.hpp"
 #include "Ice.hpp"
 #include "Cure.hpp"
+#include "MateriaSource.hpp"
 
 void	test1() {
 	std::cout << std::endl << "Test 1: AMateria basic test" << std::endl << std::endl;
@@ -85,7 +86,8 @@ void	test4() {
 	bob.use(1, *bob2); //empty slot test
 	bob2->use(1, bob); //empty slot test
 
-	bob.unequip(0); //this leads now to leak because item is just dropped to floor and not deleted when destructor comes
+	bob.unequip(0);
+	delete ice;
 	bob.unequip(1); //empty slot test
 
 	AMateria *ice1 = new Ice();
@@ -101,16 +103,46 @@ void	test4() {
 	bob.equip(cure3);
 
 	bob2->unequip(0);
+	delete cure;
 	bob2->unequip(1); //empty slot test
 	delete bob2;
+	delete cure3;
 }
 
+void	test5() {
+	IMateriaSource* src1 = new MateriaSource();
+	src1->learnMateria(new Ice());
+	src1->learnMateria(new Cure());
+
+	ICharacter* bob = new Character("bob");
+	ICharacter* bob2 = new Character("bob2");
+
+	AMateria* new_materia0;
+	new_materia0 = src1->createMateria("cure");
+	bob->equip(new_materia0);
+	AMateria* new_materia1 = src1->createMateria("ice");
+	bob2->equip(new_materia1);
+
+	AMateria* OnGround[100];
+	for (int i = 0; i < 100; i++)
+		OnGround[i] = nullptr;
+	OnGround[0] = new_materia0;
+	bob->unequip(0);
+	bob->unequip(1); //empty slot test
+
+	for (int i = 0; i < 100; i++)
+		delete OnGround[i];
+	delete bob;
+	delete bob2;
+	delete src1;
+}
+
+
 int	main() {
-	// test1();
-	// test2();
-	// test3();
+	test1();
+	test2();
+	test3();
 	test4();
-	// test5();
-	// test6();
+	test5();
 	return (0);
 }
