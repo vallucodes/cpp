@@ -17,8 +17,6 @@ Character::Character( const Character& other ) {
 	name = other.getName();
 	for (int i = 0; i < INV_SIZE; i++)
 	{
-		if (inventory[i] != nullptr)
-			delete inventory[i];
 		if (other.inventory[i] != nullptr)
 			inventory[i] = other.inventory[i]->clone();
 		else
@@ -60,6 +58,11 @@ std::string const &	Character::getName() const {
 }
 
 void	Character::equip( AMateria* m ) {
+	if (m == nullptr)
+	{
+		std::cout << "\033[1;31mCouldn't equip the item\033[0m" << std::endl;
+		return ;
+	}
 	for (int i = 0; i < INV_SIZE; i++)
 	{
 		if (inventory[i] == nullptr)

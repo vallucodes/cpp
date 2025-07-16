@@ -11,8 +11,6 @@ MateriaSource::MateriaSource( const MateriaSource& other ) {
 	std::cout << "MateriaSource copy constructor called" << std::endl;
 	for (int i = 0; i < MAT_INV_SIZE; i++)
 	{
-		if (inventory[i] != nullptr)
-			delete inventory[i];
 		if (other.inventory[i] != nullptr)
 			inventory[i] = other.inventory[i]->clone();
 		else
@@ -54,7 +52,7 @@ void	MateriaSource::learnMateria( AMateria* m ) {
 	}
 }
 
-AMateria* MateriaSource::createMateria( std::string const& type ) {
+AMateria*	MateriaSource::createMateria( std::string const& type ) {
 	for (int i = 0; i < MAT_INV_SIZE; i++)
 	{
 		if (inventory[i] && inventory[i]->getType() == type)

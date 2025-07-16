@@ -7,13 +7,13 @@ Animal::Animal( void ) {
 
 Animal::Animal( const Animal& other ) {
 	std::cout << "Animal copy constructor called" << std::endl;
-	type = other.type;
+	setType(other.getType());
 }
 
 Animal& Animal::operator=( const Animal& other ) {
 	std::cout << "Animal copy assignment called" << std::endl;
 	if (this != &other)
-		type = other.type;
+		setType(other.getType());
 	return *this;
 }
 

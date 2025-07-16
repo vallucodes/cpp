@@ -1,6 +1,6 @@
 NAME		= Materia
 CXX			= c++
-CXXFLAGS	= -g -Wall -Wextra -Werror -std=c++11
+CXXFLAGS	= -std=c++11 -Wall -Wextra -Werror
 
 SRC_DIR		= src/
 OBJ_DIR		= obj/

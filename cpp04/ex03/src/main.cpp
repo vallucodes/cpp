@@ -80,6 +80,8 @@ void	test4() {
 	bob.equip(ice);
 	bob2->equip(cure);
 
+	Character bob4(bob);
+
 	bob.use(0, *bob2);
 	bob2->use(0, bob);
 
@@ -89,6 +91,7 @@ void	test4() {
 	bob.unequip(0);
 	delete ice;
 	bob.unequip(1); //empty slot test
+
 
 	AMateria *ice1 = new Ice();
 	AMateria *cure1 = new Cure();
@@ -110,18 +113,32 @@ void	test4() {
 }
 
 void	test5() {
+	std::cout << std::endl << "Test 5: MateriaSource tests" << std::endl << std::endl;
+
 	IMateriaSource* src1 = new MateriaSource();
 	src1->learnMateria(new Ice());
 	src1->learnMateria(new Cure());
+
+	MateriaSource src2;
+	src2.learnMateria(new Cure());
+
+	MateriaSource src3(*static_cast<const MateriaSource*>(src1));
+
+	src2 = src3;
 
 	ICharacter* bob = new Character("bob");
 	ICharacter* bob2 = new Character("bob2");
 
 	AMateria* new_materia0;
-	new_materia0 = src1->createMateria("cure");
+	new_materia0 = src3.createMateria("cure");
 	bob->equip(new_materia0);
-	AMateria* new_materia1 = src1->createMateria("ice");
+	AMateria* new_materia1 = src3.createMateria("ice");
 	bob2->equip(new_materia1);
+	AMateria* new_materia2 = src3.createMateria("non_existent");
+	bob2->equip(new_materia2);
+
+	bob->use(0, *bob2);
+	bob2->use(0, *bob);
 
 	AMateria* OnGround[100];
 	for (int i = 0; i < 100; i++)
@@ -136,7 +153,6 @@ void	test5() {
 	delete bob2;
 	delete src1;
 }
-
 
 int	main() {
 	test1();

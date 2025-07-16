@@ -17,6 +17,7 @@ void	test1() {
 	std::cout << std::endl;
 	delete cat;
 	delete dog;
+	delete animalistic_cat;
 }
 
 // void	test2() {
@@ -176,11 +177,11 @@ int	main() {
 	// test3();
 
 	// Tests below testing that previous stuff still works as before
-	// test4();
-	// test5();
-	// test6();
-	// test7();
-	// test8();
-	// test9();
+	test4();
+	test5();
+	test6();
+	test7();
+	test8();
+	test9();
 	return (0);
 }

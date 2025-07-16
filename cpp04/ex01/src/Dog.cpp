@@ -9,7 +9,7 @@ Dog::Dog( void ) {
 Dog::Dog( const Dog& other ) {
 	std::cout << "Dog copy constructor called" << std::endl;
 	setType(other.getType());
-	brain = new Brain(*other.brain);
+	brain = new Brain(*other.getBrain());
 }
 
 Dog&	Dog::operator=( const Dog& other ) {
@@ -17,7 +17,7 @@ Dog&	Dog::operator=( const Dog& other ) {
 	if (this != &other)
 	{
 		setType(other.getType());
-		*brain = *(other.brain);
+		*brain = *(other.getBrain());
 	}
 	return *this;
 }

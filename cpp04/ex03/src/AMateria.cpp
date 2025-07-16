@@ -8,14 +8,14 @@ AMateria::AMateria( std::string const & type ) : type(type) {
 	std::cout << "AMateria constructor called" << std::endl;
 }
 
-AMateria::AMateria( const AMateria& other ) : type(other.type) {
+AMateria::AMateria( const AMateria& other ) : type(other.getType()) {
 	std::cout << "AMateria copy constructor called" << std::endl;
 }
 
 AMateria&	AMateria::operator=( const AMateria& other ) {
 	std::cout << "AMateria copy assignment called" << std::endl;
 	if (this != &other)
-		type = other.type;
+		type = other.getType();
 	return *this;
 }
 

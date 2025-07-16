@@ -9,7 +9,7 @@ Cat::Cat( void ) {
 Cat::Cat( const Cat& other ) {
 	std::cout << "Cat copy constructor called" << std::endl;
 	setType(other.getType());
-	brain = new Brain(*other.brain);
+	brain = new Brain(*other.getBrain());
 }
 
 Cat&	Cat::operator=( const Cat& other ) {
@@ -17,7 +17,7 @@ Cat&	Cat::operator=( const Cat& other ) {
 	if (this != &other)
 	{
 		setType(other.getType());
-		*brain = *(other.brain);
+		*brain = *(other.getBrain());
 	}
 	return *this;
 }

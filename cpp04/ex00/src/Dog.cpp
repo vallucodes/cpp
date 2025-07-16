@@ -7,13 +7,13 @@ Dog::Dog( void ) {
 
 Dog::Dog( const Dog& other ) {
 	std::cout << "Dog copy constructor called" << std::endl;
-	type = other.type;
+	setType(other.getType());
 }
 
 Dog& Dog::operator=( const Dog& other ) {
 	std::cout << "Dog copy assignment called" << std::endl;
 	if (this != &other)
-		type = other.type;
+		setType(other.getType());
 	return *this;
 }
 
