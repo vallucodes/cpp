@@ -17,5 +17,3 @@ class Dog : public Animal {
 		void	makeSound( void ) const;
 		Brain*	getBrain( void ) const;
 };
-
-
