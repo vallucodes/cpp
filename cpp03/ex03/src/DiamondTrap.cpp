@@ -8,7 +8,7 @@ DiamondTrap::DiamondTrap( void ) : ClapTrap( "Noname_clap_name" ) {
 	std::cout << "DiamondTrap defaut constructor called, object name: " << _name << std::endl;
 }
 
-DiamondTrap::DiamondTrap( std::string name ) : ClapTrap( name + "_clap_name" ), FragTrap(name), ScavTrap(name) {
+DiamondTrap::DiamondTrap( std::string name ) : ClapTrap( name + "_clap_name" ) {
 	_name = name;
 	_hitPoints = FRAG_HP;
 	_energyPoints = SCAV_EP;
@@ -16,17 +16,18 @@ DiamondTrap::DiamondTrap( std::string name ) : ClapTrap( name + "_clap_name" ), 
 	std::cout << "DiamondTrap constructor called, object name: " << _name << std::endl;
 }
 
-DiamondTrap::DiamondTrap( const DiamondTrap& other ) : ClapTrap(other) {
+DiamondTrap::DiamondTrap( const DiamondTrap& other ) : ClapTrap( other._name + "_clap_name" ) {
 	_name = other._name;
-	_hitPoints = FRAG_HP;
-	_energyPoints = SCAV_EP;
-	_attackDamage = FRAG_AD;
+	_hitPoints = other._hitPoints;
+	_energyPoints = other._energyPoints;
+	_attackDamage = other._attackDamage;
 	std::cout << "DiamondTrap copy constructor called" << std::endl;
 }
 
 DiamondTrap& DiamondTrap::operator=( const DiamondTrap& other ) {
 	ClapTrap::operator=(other);
-	_name = other._name;
+	if (this != &other)
+		_name = other._name;
 	std::cout << "DiamondTrap copy assignment called" << std::endl;
 	return *this;
 }
