@@ -4,7 +4,7 @@ FragTrap::FragTrap( void ) : ClapTrap() {
 	_hitPoints = FRAG_HP;
 	_energyPoints = FRAG_EP;
 	_attackDamage = FRAG_AD;
-	std::cout << "FragTrap defaut constructor called, object name: " << _name << std::endl;
+	std::cout << "FragTrap default constructor called, object name: " << _name << std::endl;
 }
 
 FragTrap::FragTrap( std::string name ) : ClapTrap(name) {

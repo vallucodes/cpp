@@ -1,7 +1,7 @@
 #include "WrongCat.hpp"
 
 WrongCat::WrongCat( void ) {
-	std::cout << "WrongCat defaut constructor called" << std::endl;
+	std::cout << "WrongCat default constructor called" << std::endl;
 	setType("WrongCat");
 }
 

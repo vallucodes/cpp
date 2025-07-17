@@ -14,8 +14,6 @@ AMateria::AMateria( const AMateria& other ) : type(other.getType()) {
 
 AMateria&	AMateria::operator=( const AMateria& other ) {
 	std::cout << "AMateria copy assignment called" << std::endl;
-	if (this != &other)
-		type = other.getType();
 	return *this;
 }
 

@@ -6,7 +6,7 @@ ClapTrap::ClapTrap( void ) :
 	_energyPoints(10),
 	_attackDamage(0)
 {
-	std::cout << "ClapTrap defaut constructor called, object name: " << _name << std::endl;
+	std::cout << "ClapTrap default constructor called, object name: " << _name << std::endl;
 }
 
 ClapTrap::ClapTrap( std::string name ) :
