@@ -1,15 +1,17 @@
-NAME		= iWantToBeABureaucrat
+NAME		= iRegretBecomingABureaucrat
 CXX			= c++
-CXXFLAGS	= -Wall -Wextra -Werror -std=c++11
+CXXFLAGS	= -Wall -Wextra -Werror -std=c++11 -g
 
 SRC_DIR		= src/
 OBJ_DIR		= obj/
 
 INCLUDES	= -I ./inc
-HEADERS		= inc/Bureaucrat.hpp
+HEADERS		= inc/Bureaucrat.hpp \
+				inc/Form.hpp
 
 SRCS		= src/main.cpp \
-				src/Bureaucrat.cpp
+				src/Bureaucrat.cpp \
+				src/Form.cpp
 
 OBJS		= $(patsubst $(SRC_DIR)%.cpp,$(OBJ_DIR)%.o,$(SRCS))
 
