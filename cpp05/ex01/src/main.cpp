@@ -40,14 +40,17 @@ void	test3() {
 	try {
 		Bureaucrat bur("Antonio Decaro", 3);
 		Form a("A1247", 7, 7);
-		std::cout << a << std::endl;
+		std::cout << "a: " << a << std::endl;
 		Form b;
-		std::cout << b << std::endl;
+		std::cout << "b: " << b << std::endl;
 		Form c(a);
+		std::cout << "c: " << c << std::endl;
 		bur.signForm(a);
-		std::cout << c << std::endl;
+		std::cout << "c: " << c << std::endl;
 		b = a;
-		std::cout << b << std::endl;
+		std::cout << "b: " << b << std::endl;
+		Form d(a);
+		std::cout << "d: " << d << std::endl;
 	}
 	catch (const std::exception& e) {
 		std::cout << e.what() << std::endl;
