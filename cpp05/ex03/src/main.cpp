@@ -33,7 +33,7 @@ void	test1() {
 		bur.signForm(*c);
 		bur.executeForm(*c);
 		std::cout << *c << std::endl;
-		
+
 		delete a;
 		delete b;
 		delete c;
@@ -45,7 +45,7 @@ void	test1() {
 
 void	test2() {
 	std::cout << std::endl;
-	std::cout << "\033[1;31mtest2: Create all forms with intern, high enough level bureacrat\033[0m" << std::endl << std::endl;
+	std::cout << "\033[1;31mtest2: Create invalid form with intern, high enough level bureacrat\033[0m" << std::endl << std::endl;
 
 	try {
 		Intern intern;
