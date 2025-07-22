@@ -6,7 +6,7 @@ class Intern {
 
 	private:
 		std::string	forms[3];
-		AForm*		(*functions[3])(const std::string& target);
+		AForm*		(Intern::*functions[3])(const std::string& target);
 
 	public:
 		Intern( void );
@@ -18,6 +18,10 @@ class Intern {
 			public:
 				const char* what() const noexcept override;
 		};
+
+		AForm* CreatePPF( const std::string& target );
+		AForm* CreateRRF( const std::string& target );
+		AForm* CreateSCF( const std::string& target );
 
 		AForm*	makeForm( const std::string& name, const std::string& target );
 };

@@ -1,12 +1,5 @@
 #include "AForm.hpp"
 
-AForm::AForm( void ) :
-	_name("Default Form"),
-	_signed(false),
-	_gradeToSign(1),
-	_gradeToExec(1)
-{}
-
 AForm::AForm( const std::string name, int gradeToSign, int gradeToExec ) :
 	_name(name),
 	_signed(false),
@@ -50,7 +43,11 @@ const char*	AForm::GradeTooLowException::what() const noexcept {
 	return ("grade is too low.");
 }
 
-const char*	AForm::FormNotSigned::what() const noexcept {
+const char*	AForm::AlreadySignedException::what() const noexcept {
+	return ("form is already signed!");
+}
+
+const char*	AForm::FormNotSignedException::what() const noexcept {
 	return ("form is not signed.");
 }
 
@@ -73,6 +70,8 @@ int	AForm::getGradeRequiredToExec() const {
 void	AForm::beSigned( const Bureaucrat& b ) {
 	if (b.getGrade() > getGradeRequiredToSign())
 		throw GradeTooLowException();
+	if (getSigned() == true)
+		throw AlreadySignedException();
 	_signed = true;
 }
 

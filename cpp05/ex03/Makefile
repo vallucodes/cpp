@@ -1,4 +1,4 @@
-NAME		= soManyForms
+NAME		= intern
 CXX			= c++
 CXXFLAGS	= -Wall -Wextra -Werror -std=c++11
 
@@ -8,6 +8,7 @@ OBJ_DIR		= obj/
 INCLUDES	= -I ./inc
 HEADERS		= inc/Bureaucrat.hpp \
 				inc/AForm.hpp \
+				inc/Intern.hpp \
 				inc/PresidentialPardonForm.hpp \
 				inc/RobotomyRequestForm.hpp \
 				inc/ShrubberyCreationForm.hpp
@@ -15,6 +16,7 @@ HEADERS		= inc/Bureaucrat.hpp \
 SRCS		= src/main.cpp \
 				src/AForm.cpp \
 				src/Bureaucrat.cpp \
+				src/Intern.cpp \
 				src/PresidentialPardonForm.cpp \
 				src/RobotomyRequestForm.cpp \
 				src/ShrubberyCreationForm.cpp

@@ -85,7 +85,7 @@ void	test2_2() {
 
 void	test2_3() {
 	std::cout << std::endl;
-	std::cout << "\033[1;31mtest2.3: 2 different bureacrats signing and executing: Presidential. Low level bureaucrat Maria Ohisalo\033[0m" << std::endl << std::endl;
+	std::cout << "\033[1;31mtest2.3: 2 different bureacrats signing and executing: Presidential.\033[0m" << std::endl << std::endl;
 
 	try {
 		Bureaucrat bur1("Ursula von der Leyen", 1);
@@ -148,7 +148,7 @@ void	test4() {
 		bur.executeForm(b);
 		std::cout << b << std::endl;
 
-		ShrubberyCreationForm c("Lari");
+		ShrubberyCreationForm c("neighbor");
 		bur.executeForm(c);
 		std::cout << c << std::endl;
 	}
@@ -165,7 +165,7 @@ void	test5() {
 		Bureaucrat bur("Ursula von der Leyen", 1);
 		std::cout << bur << std::endl;
 
-		ShrubberyCreationForm b("trees");
+		ShrubberyCreationForm b("home");
 		bur.signForm(b);
 		bur.executeForm(b);
 		std::cout << b << std::endl;
@@ -190,12 +190,11 @@ void	test7() {
 		Bureaucrat bur("Antonio Decaro", 3);
 		PresidentialPardonForm a("some_target");
 		std::cout << "a: " << a << std::endl;
-		PresidentialPardonForm b;
-		std::cout << "b: " << b << std::endl;
 		PresidentialPardonForm c(a);
 		std::cout << "c: " << c << std::endl;
 		bur.signForm(a);
 		std::cout << "c: " << c << std::endl;
+		PresidentialPardonForm b("Turo");
 		b = a;
 		std::cout << "b: " << b << std::endl;
 		PresidentialPardonForm d(a);
@@ -214,12 +213,11 @@ void	test8() {
 		Bureaucrat bur("Antonio Decaro", 3);
 		RobotomyRequestForm a("some_target");
 		std::cout << "a: " << a << std::endl;
-		RobotomyRequestForm b;
-		std::cout << "b: " << b << std::endl;
 		RobotomyRequestForm c(a);
 		std::cout << "c: " << c << std::endl;
 		bur.signForm(a);
 		std::cout << "c: " << c << std::endl;
+		RobotomyRequestForm b("Turo");
 		b = a;
 		std::cout << "b: " << b << std::endl;
 		RobotomyRequestForm d(a);
@@ -238,12 +236,11 @@ void	test9() {
 		Bureaucrat bur("Antonio Decaro", 3);
 		ShrubberyCreationForm a("some_target");
 		std::cout << "a: " << a << std::endl;
-		ShrubberyCreationForm b;
-		std::cout << "b: " << b << std::endl;
 		ShrubberyCreationForm c(a);
 		std::cout << "c: " << c << std::endl;
 		bur.signForm(a);
 		std::cout << "c: " << c << std::endl;
+		ShrubberyCreationForm b("Turo");
 		b = a;
 		std::cout << "b: " << b << std::endl;
 		ShrubberyCreationForm d(a);

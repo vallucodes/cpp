@@ -13,7 +13,7 @@ class AForm {
 		const int			_gradeToExec;
 
 	public:
-		AForm( void );
+		AForm( void ) = delete;
 		AForm( const std::string name, int gradeToSign, int gradeToExec );
 		AForm( const AForm& other );
 		AForm& operator=( const AForm& other );
@@ -29,7 +29,12 @@ class AForm {
 				const char* what() const noexcept override;
 		};
 
-		class	FormNotSigned : public std::exception {
+		class	AlreadySignedException : public std::exception {
+			public:
+				const char* what() const noexcept override;
+		};
+
+		class	FormNotSignedException : public std::exception {
 			public:
 				const char* what() const noexcept override;
 		};

@@ -13,7 +13,7 @@ class Form {
 		const int			_gradeToExec;
 
 	public:
-		Form( void );
+		Form( void ) = delete;
 		Form( const std::string name, int gradeToSign, int gradeToExec );
 		Form( const Form& other );
 		Form& operator=( const Form& other );
@@ -25,6 +25,11 @@ class Form {
 		};
 
 		class	GradeTooLowException : public std::exception {
+			public:
+				const char* what() const noexcept override;
+		};
+
+		class	AlreadySignedException : public std::exception {
 			public:
 				const char* what() const noexcept override;
 		};

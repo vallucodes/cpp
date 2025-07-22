@@ -9,7 +9,7 @@ class RobotomyRequestForm : public AForm {
 		std::string	target;
 
 	public:
-		RobotomyRequestForm( void );
+		RobotomyRequestForm( void ) = delete;
 		RobotomyRequestForm( const std::string& target );
 		RobotomyRequestForm( const RobotomyRequestForm& other );
 		RobotomyRequestForm& operator=( const RobotomyRequestForm& other );

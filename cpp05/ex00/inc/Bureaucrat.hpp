@@ -23,7 +23,7 @@ class Bureaucrat {
 
 		class GradeTooLowException : public std::exception {
 			public:
-				const char* what() const noexcept override;
+				const char*	what() const noexcept override;
 		};
 
 		const std::string&	getName( void ) const;

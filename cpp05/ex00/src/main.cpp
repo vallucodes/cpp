@@ -65,7 +65,7 @@ void	test4() {
 
 void	test5() {
 	std::cout << std::endl;
-	std::cout << "\033[1;31mtest5: Copying bureaucrats\033[0m" << std::endl << std::endl;
+	std::cout << "\033[1;31mtest5: copying bureaucrats\033[0m" << std::endl << std::endl;
 
 	try {
 		Bureaucrat b1("Iratxe Garcia Perez", 58);

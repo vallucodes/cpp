@@ -1,11 +1,6 @@
 #include "ShrubberyCreationForm.hpp"
 #include <fstream>
 
-ShrubberyCreationForm::ShrubberyCreationForm( void ) :
-	AForm("Shrubbery creation form", 145, 137) {
-	target = "default";
-}
-
 ShrubberyCreationForm::ShrubberyCreationForm( const std::string& target ) :
 	AForm("Shrubbery creation form", 145, 137) {
 	this->target = target;
@@ -31,29 +26,25 @@ const char*	ShrubberyCreationForm::FileCreationError::what() const noexcept {
 
 void	ShrubberyCreationForm::execute( const Bureaucrat& executor ) const {
 	if (getSigned() == false)
-		throw FormNotSigned();
+		throw FormNotSignedException();
 	if (executor.getGrade() > getGradeRequiredToExec())
 		throw GradeTooLowException();
 
-	try {
-		std::ofstream outfile(target + "_shrubbery");
-		if (!outfile.is_open()) {
-			throw FileCreationError();
-	}
-			outfile
-			<< "     🌲\n"
-			<< "     /\\\n"
-			<< "    /**\\\n"
-			<< "   /****\\\n"
-			<< "  /******\\\n"
-			<< " /********\\\n"
-			<< "    ||||\n"
-			<< "............\n"
-			<< std::endl;
-			outfile.close();
-			std::cout << "Shrubbery created in " << target + "_shrubbery" << std::endl;
-	}
-	catch (const std::exception& e) {
-		std::cerr << e.what() << std::endl;
-	}
+	std::ofstream outfile(target + "_shrubbery");
+	if (!outfile.is_open())
+		throw FileCreationError();
+
+	outfile
+	<< "     🌲\n"
+	<< "     /\\\n"
+	<< "    /**\\\n"
+	<< "   /****\\\n"
+	<< "  /******\\\n"
+	<< " /********\\\n"
+	<< "    ||||\n"
+	<< "............\n"
+	<< std::endl;
+
+	outfile.close();
+	std::cout << "Shrubbery created in " << target + "_shrubbery" << std::endl;
 }

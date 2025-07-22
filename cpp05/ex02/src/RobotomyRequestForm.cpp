@@ -1,11 +1,6 @@
 #include <random>
 #include "RobotomyRequestForm.hpp"
 
-RobotomyRequestForm::RobotomyRequestForm( void ) :
-	AForm("Robotomy request form", 72, 45) {
-	target = "default";
-}
-
 RobotomyRequestForm::RobotomyRequestForm( const std::string& target ) :
 	AForm("Robotomy request form", 72, 45) {
 	this->target = target;
@@ -26,7 +21,7 @@ RobotomyRequestForm::~RobotomyRequestForm() {}
 
 void	RobotomyRequestForm::execute( const Bureaucrat& executor ) const {
 	if (getSigned() == false)
-		throw FormNotSigned();
+		throw FormNotSignedException();
 	if (executor.getGrade() > getGradeRequiredToExec())
 		throw GradeTooLowException();
 
