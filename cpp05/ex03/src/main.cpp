@@ -33,6 +33,10 @@ void	test1() {
 		bur.signForm(*c);
 		bur.executeForm(*c);
 		std::cout << *c << std::endl;
+		
+		delete a;
+		delete b;
+		delete c;
 	}
 	catch (const std::exception& e) {
 		std::cout << e.what() << std::endl;
