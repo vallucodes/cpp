@@ -1,4 +1,7 @@
+#include <cstdint>
 #include "ScalarConverter.hpp"
+
+// problem right now is handling for ".3"
 
 static void	printImpossible() {
 	std::cout << "char: impossible" << std::endl;
@@ -11,21 +14,23 @@ static bool	validateInput( const std::string& nb ) {
 	if (nb.length() == 1)
 		return true;
 	bool dotIsPresent = false;
-	bool fIsPresent = false;
-	for (int i = 0; i < nb.length(); i++)
+	for (uint64_t i = 0; i < nb.length(); i++)
 	{
-		if (nb[i] == 'f' && nb[i + 1] == '\0' && fIsPresent == false)
+		if (nb[0] == '-' || nb[0] == '+')
+			continue ;
+		if (std::isdigit(nb[i]))
+			continue ;
+		if (nb[i] == 'f' && nb[i + 1] == '\0')
 			return true;
 		if (nb[i] == '.' && dotIsPresent == false)
 		{
 			dotIsPresent = true;
 			continue ;
 		}
-		if (std::isdigit(nb[i]) || (dotIsPresent == false))
-
 		else
 			return false;
 	}
+	return true;
 }
 
 static void	handleChar( const std::string& nb ) {
@@ -77,7 +82,10 @@ static void	handleInt( const std::string& nb ) {
 void	ScalarConverter::convert( const std::string& nb ) {
 
 	if (!validateInput(nb))
+	{
 		printImpossible();
+		return ;
+	}
 	handleChar(nb);
 	handleInt(nb);
 	// handleFloat(nb);
