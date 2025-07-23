@@ -1,6 +1,6 @@
 NAME		= convert
 CXX			= c++
-CXXFLAGS	= -Wall -Wextra -Werror -std=c++11
+CXXFLAGS	= -Wall -Wextra -std=c++11 #-Werror
 
 SRC_DIR		= src/
 OBJ_DIR		= obj/
