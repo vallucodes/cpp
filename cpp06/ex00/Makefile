@@ -1,6 +1,6 @@
 NAME		= convert
 CXX			= c++
-CXXFLAGS	= -Wall -Wextra -std=c++11 #-Werror
+CXXFLAGS	= -Wall -Wextra -std=c++11 -g #-Werror
 
 SRC_DIR		= src/
 OBJ_DIR		= obj/
@@ -16,7 +16,7 @@ OBJS		= $(patsubst $(SRC_DIR)%.cpp,$(OBJ_DIR)%.o,$(SRCS))
 all: $(NAME)
 
 $(NAME): $(OBJS) $(HEADERS)
-	$(CXX) $(CXXFLAGS) $(OBJS) $(INCLUDES) -o $(NAME)
+	$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.cpp $(HEADERS)
 	@mkdir -p $(OBJ_DIR)

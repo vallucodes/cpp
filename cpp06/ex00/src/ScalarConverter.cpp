@@ -1,39 +1,9 @@
 #include <cstdint>
 #include "ScalarConverter.hpp"
+#include <iostream>
+#include <iomanip>
 
-// problem right now is handling for ".3"
-
-static void	printImpossible() {
-	std::cout << "char: impossible" << std::endl;
-	std::cout << "int: impossible" << std::endl;
-	std::cout << "float: impossible" << std::endl;
-	std::cout << "double: impossible" << std::endl;
-}
-
-static bool	validateInput( const std::string& nb ) {
-	if (nb.length() == 1)
-		return true;
-	bool dotIsPresent = false;
-	for (uint64_t i = 0; i < nb.length(); i++)
-	{
-		if (nb[0] == '-' || nb[0] == '+')
-			continue ;
-		if (std::isdigit(nb[i]))
-			continue ;
-		if (nb[i] == 'f' && nb[i + 1] == '\0')
-			return true;
-		if (nb[i] == '.' && dotIsPresent == false)
-		{
-			dotIsPresent = true;
-			continue ;
-		}
-		else
-			return false;
-	}
-	return true;
-}
-
-static void	handleChar( const std::string& nb ) {
+void	handleChar( const std::string& nb ) {
 
 	std::cout << "char: ";
 	try {
@@ -61,9 +31,10 @@ static void	handleChar( const std::string& nb ) {
 	}
 }
 
-static void	handleInt( const std::string& nb ) {
+void	handleInt( const std::string& nb ) {
 
 	std::cout << "int: ";
+
 	try {
 		int res = std::stoi(nb);
 		std::cout << res << std::endl;
@@ -79,22 +50,273 @@ static void	handleInt( const std::string& nb ) {
 	}
 }
 
+void	handleFloat( const std::string& nb, const int precision ) {
+
+	std::cout << "float: ";
+
+	try {
+		float res = std::stof(nb);
+		std::cout << std::fixed << std::setprecision(precision) << res << "f" << std::endl; //this seems to work, further needs testing
+	}
+	catch (const std::invalid_argument& e) {
+		std::cout << "impossible" << std::endl;
+	}
+	catch (const std::out_of_range& e) {
+		std::cout << "impossible" << std::endl;
+	}
+	catch (const std::exception& e) {
+		std::cout << e.what() << std::endl;
+	}
+}
+
+// void	printChar( const std::string& nb ) {
+// 	char c = nb[0];
+
+// 	std::cout << "Char: '" << c << "'" << std::endl;
+// 	std::cout << "Int: "<< static_cast<int>(c) << std::endl;
+// 	std::cout << "Float: "<< static_cast<float>(c) << ".0f" << std::endl;
+// 	std::cout << "Double: "<< static_cast<double>(c) << ".0" << std::endl;
+// }
+
+// void	printInt( const std::string& nb ) {
+// 	int res = std::stoi(nb);
+
+// 	handleChar(nb);
+// 	// std::cout << "Char: '" << static_cast<char>(res) << "'" << std::endl;
+// 	handleInt(nb);
+// 	// std::cout << "Int: "<< res << std::endl;
+// 	handleFloat(nb);
+// 	// std::cout << "Float: "<< static_cast<float>(res) << ".0f" << std::endl;
+// 	std::cout << "Double: "<< static_cast<double>(res) << ".0" << std::endl;
+// }
+
+void	printImpossible() {
+	std::cout << "char: impossible" << std::endl;
+	std::cout << "int: impossible" << std::endl;
+	std::cout << "float: impossible" << std::endl;
+	std::cout << "double: impossible" << std::endl;
+}
+
+bool	checkChar( const std::string& nb ) {
+	if (nb.length() == 1 && !std::isdigit(nb[0]) && std::isprint(nb[0]))
+		return true;
+	return false;
+}
+
+bool	checkInt( const std::string& nb ) {
+	size_t	i = 0;
+
+	if (nb[i] == '+' || nb[i] == '-')
+	{
+		i++;
+		if (i >= nb.length())
+			return false;
+	}
+	while (nb[i] && std::isdigit(nb[i]))
+		i++;
+	if (nb[i] != '\0' && !std::isdigit(nb[i]))
+		return false;
+	try {
+		std::stoi(nb);
+	}
+	catch (const std::out_of_range& e) {
+		return false;
+	}
+	return true;
+}
+
+bool	checkFloat( const std::string& nb ) {
+	size_t	i = 0;
+	int		dotCount = 0;
+
+	if (nb[i] == '+' || nb[i] == '-')
+		i++;
+	while (nb[i] && (std::isdigit(nb[i]) || nb[i] == '.'))
+	{
+		if (nb[i] == '.')
+			dotCount++;
+		if (dotCount > 1)
+			return false;
+		i++;
+	}
+	if (i != nb.size() - 1 || nb[i] != 'f')
+		return false;
+	try {
+		std::stof(nb);
+	}
+	catch (const std::out_of_range& e) {
+		return false;
+	}
+	return true;
+}
+
+bool	checkDouble( const std::string& nb ) {
+	size_t	i = 0;
+	int		dotCount = 0;
+
+	if (nb[i] == '+' || nb[i] == '-')
+		i++;
+	while (nb[i] && (std::isdigit(nb[i]) || nb[i] == '.'))
+	{
+		if (nb[i] == '.')
+			dotCount++;
+		if (dotCount > 1)
+			return false;
+		i++;
+	}
+	if (i < nb.size())
+		return false;
+	try {
+		std::stof(nb);
+	}
+	catch (const std::out_of_range& e) {
+		return false;
+	}
+	return true;
+}
+
+bool	checkPseudoLiteralsFloat( const std::string& nb ) {
+	return (nb == "-inff" || nb =="+inff" || nb =="nanf");
+}
+
+bool	checkPseudoLiteralsDouble( const std::string& nb ) {
+	return (nb == "-inf" || nb =="+inf" || nb =="nan");
+}
+
+int	getPresicion( const std::string& nb ) {
+
+	size_t dotPos = nb.find('.');
+	if (dotPos == std::string::npos || dotPos + 1 >= nb.size() || dotPos + 2 >= nb.size())
+		return 1;
+
+	size_t i = 0;
+	while (nb[dotPos + 1 + i] && nb[dotPos + 1 + i] != '.' && std::isdigit(nb[dotPos + 1 + i]))
+		i++;
+	return i;
+}
+
+int	detectType( const std::string& nb ) {
+	if (checkChar(nb))
+		return CHAR;
+	if (checkInt(nb))
+		return INT;
+	if (checkFloat(nb))
+		return FLOAT;
+	if (checkDouble(nb))
+		return DOUBLE;
+	if (checkPseudoLiteralsFloat(nb))
+		return PSEUDOFLOAT;
+	if (checkPseudoLiteralsDouble(nb))
+		return PSEUDODOUBLE;
+	return INVALID;
+}
+
+// static bool	validateInput( const std::string& nb ) {
+// 	if (nb.length() == 1)
+// 		return true;
+// 	bool dotIsPresent = false;
+// 	for (uint64_t i = 0; i < nb.length(); i++)
+// 	{
+// 		if (nb[0] == '-' || nb[0] == '+')
+// 			continue ;
+// 		if (std::isdigit(nb[i]))
+// 			continue ;
+// 		if (nb[i] == 'f' && nb[i + 1] == '\0')
+// 			return true;
+// 		if (nb[i] == '.' && dotIsPresent == false)
+// 		{
+// 			dotIsPresent = true;
+// 			continue ;
+// 		}
+// 		else
+// 			return false;
+// 	}
+// 	return true;
+// }
+
 void	ScalarConverter::convert( const std::string& nb ) {
 
-	if (!validateInput(nb))
+	// if (!validateInput(nb))
+	// {
+	// 	printImpossible();
+	// 	return ;
+	// }
+
+	// if(isEmpty(nb))
+	// 	printImpossible();
+
+	int precision = getPresicion(nb);
+	printf("presicion: %i\n", precision);
+	int type = detectType(nb);
+
+	switch (type)
 	{
+	case 0:
+		printf("Char\n");
+		handleChar(nb);
+		handleInt(nb);
+		handleFloat(nb, precision);
+		break;
+	case 1:
+		printf("Int\n");
+		handleChar(nb);
+		handleInt(nb);
+		handleFloat(nb, precision);
+		break;
+	case 2:
+		printf("Float\n");
+		handleChar(nb);
+		handleInt(nb);
+		handleFloat(nb, precision);
+		break;
+	case 3:
+		printf("Double\n");
+		// printFloat(nb);
+		break;
+	case 4:
+		printf("Pseudofloat\n");
+		// printFloat(nb);
+		break;
+	case 5:
+		printf("Pseudofdouble\n");
+		// printFloat(nb);
+		break;
+	case 6:
+		printf("Invalid\n");
 		printImpossible();
-		return ;
+		break;
 	}
-	handleChar(nb);
-	handleInt(nb);
+
+	// handleChar(nb);
 	// handleFloat(nb);
-	// handleDouble(nb);
+	// double out;
+	// handleDouble(nb, out);
+	// handleInt(out);
 }
 
 const char*	ScalarConverter::nonDisplayableException::what() const noexcept {
 	return ("Non displayable");
 }
+
+void	handleDouble( const std::string& nb, double& out ) {
+
+	// std::cout << "int: ";
+
+	try {
+		double res = std::stod(nb);
+		std::cout << res << std::endl;
+	}
+	catch (const std::invalid_argument& e) {
+		std::cout << "impossible" << std::endl;
+	}
+	catch (const std::out_of_range& e) {
+		std::cout << "impossible" << std::endl;
+	}
+	catch (const std::exception& e) {
+		std::cout << e.what() << std::endl;
+	}
+}
+
 
 // char:			32					-126
 // int:				-2147483648			2147483647
