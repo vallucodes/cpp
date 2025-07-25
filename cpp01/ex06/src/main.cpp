@@ -11,6 +11,7 @@ int	main(int ac, char **av) {
 		if (input == "y") {
 			std::cout << std::endl;
 			tests();
+			return (0);
 		}
 		return (1);
 	}
