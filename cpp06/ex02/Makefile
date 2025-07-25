@@ -1,16 +1,18 @@
-NAME		= ScalarConverter
+NAME		= serialization
 CXX			= c++
-CXXFLAGS	= -Wall -Wextra -Werror -std=c++11
+CXXFLAGS	= -Wall -Wextra  -std=c++11 #-Werror
 
 SRC_DIR		= src/
 OBJ_DIR		= obj/
 
 INCLUDES	= -I ./inc
-HEADERS		= inc/ScalarConverter.hpp
+HEADERS		= inc/Base.hpp \
+				inc/A.hpp \
+				inc/B.hpp \
+				inc/C.hpp
 
 SRCS		= src/main.cpp \
-				src/ScalarConverter.cpp \
-				src/tests.cpp
+				src/Base.cpp
 
 OBJS		= $(patsubst $(SRC_DIR)%.cpp,$(OBJ_DIR)%.o,$(SRCS))
 

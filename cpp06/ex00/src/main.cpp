@@ -1,27 +1,26 @@
 #include <iostream>
 #include "ScalarConverter.hpp"
-#include <limits>
+
+void	tests();
 
 int main(int ac, char **av)
 {
-	// if (ac != 2)
-	// {
-	// 	std::cerr << "Error\nUsage: ./convert <convertible>" << std::endl;
-	// 	return 1;
-	// }
-	// else
-	ScalarConverter::convert(std::string(av[1]));
-
-	// std::string s = "89";
-
-	// int c = 89;
-	// std::cout << "'" << static_cast<char>(c) << "'" << std::endl;
-
-	// float a = std::stof(s);
-	// std::cout << a << std::endl;
-
-	// double b = std::stod(s);
-	// std::cout << b << std::endl;
+	if (ac != 2)
+	{
+		std::cerr << "Usage: ./ScalarConverter <convertible>" << std::endl;
+		std::string	input;
+		std::cout << "Do you want to launch automated tests? (y/n) ";
+		std::cin >> input;
+		if (input == "y") {
+			std::cout << std::endl;
+			tests();
+			return (0);
+		}
+		return (1);
+		return 1;
+	}
+	else
+		ScalarConverter::convert(std::string(av[1]));
 
 	return 0;
 }

@@ -14,13 +14,11 @@ enum	e_type {
 
 class ScalarConverter {
 
-	private:
+	public:
 		ScalarConverter( void ) = delete;
 		ScalarConverter( const ScalarConverter &other ) = delete;
 		~ScalarConverter( void ) = delete;
 		ScalarConverter &operator=( const ScalarConverter &other ) = delete;
-
-	public:
 
 		class	nonDisplayableException : public std::exception {
 			public:
