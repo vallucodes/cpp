@@ -1,6 +1,8 @@
 #include <iostream>
 #include <filesystem>
 #include <fstream>
+#include <thread>
+#include <chrono>
 #include "Base.hpp"
 #include "A.hpp"
 #include "B.hpp"
@@ -9,13 +11,13 @@
 unsigned long	get_file_content_weight(const char* path) {
 	std::ifstream file(path);
 	if (!file.is_open())
-		throw std::runtime_error("Failed to open file");
+		throw std::runtime_error("Failed to open file\n");
 
 	unsigned long sum = 0;
 	char c;
 	int count = 0;
 	while (file.get(c) && count < 1024) {
-		sum += static_cast<unsigned char>(c);
+		sum += c;
 		count++;
 	}
 	return sum;
@@ -26,11 +28,11 @@ Base*	generate( void ) {
 	try {
 		unsigned long nb = get_file_content_weight("/proc/stat");
 		res = (nb % 3);
-	} catch (...) {
-		std::cout << "Coulnd't generate number" << std::endl;
+	} catch (std::exception& e) {
+		std::cout << e.what() << "Can't generate number" << std::endl;
 		return nullptr;
 	}
-	
+
 	switch (res)
 	{
 		case 0:
@@ -57,25 +59,25 @@ void	identify( Base* p ) {
 
 void	identify( Base& p ) {
 	try {
-		dynamic_cast<A&>(p);
+		(void)dynamic_cast<A&>(p);
 		std::cout << "A" << std::endl;
 		return ;
 	}
-	catch (...){}
+	catch (std::bad_cast& e){}
 
 	try {
-		dynamic_cast<B&>(p);
+		(void)dynamic_cast<B&>(p);
 		std::cout << "B" << std::endl;
 		return ;
 	}
-	catch (...){}
+	catch (std::bad_cast& e){}
 
 	try {
-		dynamic_cast<C&>(p);
+		(void)dynamic_cast<C&>(p);
 		std::cout << "C" << std::endl;
 		return ;
 	}
-	catch (...){}
+	catch (std::bad_cast& e){}
 }
 
 void	test1() {
@@ -86,6 +88,11 @@ void	test1() {
 
 int main()
 {
-	test1();
+	for (int i = 0; i < 10; i++)
+	{
+		test1();
+		std::cout << std::string(10, '-') << std::endl;
+		std::this_thread::sleep_for(std::chrono::milliseconds(20));
+	}
 	return 0;
 }

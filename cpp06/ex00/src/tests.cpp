@@ -43,6 +43,10 @@ void	testChar() {
 	ScalarConverter::convert("?");
 	std::cout << CYAN << std::string(50, '-') << RESET << std::endl;
 
+	std::cout << GREEN << "Test input: '~' " << RESET << std::endl;
+	ScalarConverter::convert("~");
+	std::cout << CYAN << std::string(50, '-') << RESET << std::endl;
+
 	// Space character
 	std::cout << GREEN << "Test input: ' ' (space)" << RESET << std::endl;
 	ScalarConverter::convert(" ");
@@ -297,6 +301,10 @@ void	testInvalid() {
 	ScalarConverter::convert("f42");
 	std::cout << CYAN << std::string(50, '-') << RESET << std::endl;
 
+	std::cout << GREEN << "Test input: '0.43f❤' " << RESET << std::endl;
+	ScalarConverter::convert("0.43f❤");
+	std::cout << CYAN << std::string(50, '-') << RESET << std::endl;
+
 	// Invalid double formats
 	std::cout << GREEN << "Test input: '42.0.0' " << RESET << std::endl;
 	ScalarConverter::convert("42.0.0");
@@ -304,6 +312,10 @@ void	testInvalid() {
 
 	std::cout << GREEN << "Test input: '42..0' " << RESET << std::endl;
 	ScalarConverter::convert("42..0");
+	std::cout << CYAN << std::string(50, '-') << RESET << std::endl;
+
+	std::cout << GREEN << "Test input: '0.43❤' " << RESET << std::endl;
+	ScalarConverter::convert("0.43❤");
 	std::cout << CYAN << std::string(50, '-') << RESET << std::endl;
 
 	// Empty or whitespace

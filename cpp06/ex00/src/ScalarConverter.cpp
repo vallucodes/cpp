@@ -1,6 +1,6 @@
-#include <cstdint>
 #include "ScalarConverter.hpp"
 #include <iostream>
+#include <cstdint>
 #include <iomanip>
 #include <limits>
 #include <cmath>

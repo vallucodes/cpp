@@ -1,6 +1,6 @@
-NAME		= serialization
+NAME		= identify
 CXX			= c++
-CXXFLAGS	= -Wall -Wextra  -std=c++11 #-Werror
+CXXFLAGS	= -std=c++11 -Wall -Wextra -Werror
 
 SRC_DIR		= src/
 OBJ_DIR		= obj/
