@@ -84,6 +84,7 @@ void	test1() {
 	Base* p = generate();
 	identify(p);
 	identify(*p);
+	delete p;
 }
 
 int main()
