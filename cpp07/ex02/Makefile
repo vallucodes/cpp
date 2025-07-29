@@ -1,6 +1,6 @@
 NAME		= array
 CXX			= c++
-CXXFLAGS	= -Wall -Wextra -Werror -std=c++11
+CXXFLAGS	= -std=c++11 -Wall -Wextra #-Werror
 
 SRC_DIR		= src/
 OBJ_DIR		= obj/
@@ -10,6 +10,8 @@ HEADERS		= inc/Array.hpp
 
 SRCS		= src/main.cpp
 
+TEMPLATES	= src/Array.tpp
+
 OBJS		= $(patsubst $(SRC_DIR)%.cpp,$(OBJ_DIR)%.o,$(SRCS))
 
 all: $(NAME)
@@ -17,7 +19,7 @@ all: $(NAME)
 $(NAME): $(OBJS) $(HEADERS)
 	$(CXX) $(CXXFLAGS) $(OBJS) $(INCLUDES) -o $(NAME)
 
-$(OBJ_DIR)%.o: $(SRC_DIR)%.cpp $(HEADERS)
+$(OBJ_DIR)%.o: $(SRC_DIR)%.cpp $(HEADERS) $(TEMPLATES)
 	@mkdir -p $(OBJ_DIR)
 	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
 
