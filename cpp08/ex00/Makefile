@@ -1,16 +1,14 @@
-NAME		= array
+NAME		= containers
 CXX			= c++
-CXXFLAGS	= -std=c++11 -Wall -Wextra -Werror
+CXXFLAGS	= -std=c++14 -Wall -Wextra -Werror
 
 SRC_DIR		= src/
 OBJ_DIR		= obj/
 
 INCLUDES	= -I ./inc
-HEADERS		= inc/Array.hpp
+HEADERS		= inc/easyfind.hpp
 
 SRCS		= src/main.cpp
-
-TEMPLATES	= src/Array.tpp
 
 OBJS		= $(patsubst $(SRC_DIR)%.cpp,$(OBJ_DIR)%.o,$(SRCS))
 

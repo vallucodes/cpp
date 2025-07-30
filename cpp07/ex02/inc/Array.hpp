@@ -1,6 +1,5 @@
 #pragma once
 #include <iostream>
-#include <exception>
 
 template <typename T>
 class Array {
