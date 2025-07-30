@@ -16,17 +16,9 @@ class Array {
 		Array &operator=( const Array &other );
 		~Array( void );
 
-		class outOfRange : public std::exception {
-			public:
-				const char* what() const noexcept override;
-		};
-
-		void		setValue( size_t i , T value );
-		T			getValue( size_t i ) const;
-		size_t		getArrLen( void ) const;
-		const T&	operator[]( size_t i ) const;
-		T&			operator[]( size_t i );
-		size_t		size( void );
+		const T&		operator[]( size_t i ) const;
+		T&				operator[]( size_t i );
+		size_t			size( void ) const;
 };
 
 template <typename T>

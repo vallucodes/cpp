@@ -52,11 +52,35 @@ void	test5() {
 	::iter(arr, 0, print_int);
 }
 
+class Awesome {
+	public:
+		Awesome(void):_n(42) {return;}
+		int get(void) const { return this->_n;}
+	private:
+		int _n;
+};
+std::ostream &operator<< (std::ostream &o, Awesome const & rhs) {o<<rhs.get(); return o;}
+
+template <typename T>
+void print(T const & x ) {std::cout << x << std::endl; return;}
+
+void	test6() {
+	std::cout << std::endl;
+	std::cout << "\033[1;31mtest5: len = 0\033[0m" << std::endl << std::endl;
+
+	int tab[] = {0,1,2,3,4};
+	Awesome tab2[5];
+
+	iter(tab, 5UL, print<int>);
+	iter(tab2, 5UL, print<Awesome>);
+}
+
 int main() {
 	test1();
 	test2();
 	test3();
 	test4();
 	test5();
+	test6();
 	return 0;
 }

@@ -1,6 +1,6 @@
 NAME		= array
 CXX			= c++
-CXXFLAGS	= -std=c++11 -Wall -Wextra #-Werror
+CXXFLAGS	= -std=c++11 -Wall -Wextra -Werror -g
 
 SRC_DIR		= src/
 OBJ_DIR		= obj/
