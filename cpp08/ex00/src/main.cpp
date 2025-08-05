@@ -13,7 +13,7 @@
 
 void	test1() {
 	std::cout << std::endl;
-	std::cout << RED << "test1: test vector" << RESET << std::endl << std::endl;
+	std::cout << RED << "test1: vector" << RESET << std::endl << std::endl;
 
 	std::vector<int> vec = {1, 9, 3, 5, 7, 99};
 
@@ -33,7 +33,7 @@ void	test1() {
 
 void	test2() {
 	std::cout << std::endl;
-	std::cout << RED << "test2: test deque" << RESET << std::endl << std::endl;
+	std::cout << RED << "test2: deque" << RESET << std::endl << std::endl;
 
 	std::deque<int> deq = {1, 9, 3, 5, 7, 99};
 
@@ -53,7 +53,7 @@ void	test2() {
 
 void	test3() {
 	std::cout << std::endl;
-	std::cout << RED << "test3: test list" << RESET << std::endl << std::endl;
+	std::cout << RED << "test3: list" << RESET << std::endl << std::endl;
 
 	std::list<int> list = {1, 9, 3, 5, 7, 99};
 
@@ -73,7 +73,7 @@ void	test3() {
 
 void	test4() {
 	std::cout << std::endl;
-	std::cout << RED << "test4: test set" << RESET << std::endl << std::endl;
+	std::cout << RED << "test4: set" << RESET << std::endl << std::endl;
 
 	std::set<int> set = {1, 9, 3, 5, 7, 99};
 
@@ -93,7 +93,7 @@ void	test4() {
 
 void	test5() {
 	std::cout << std::endl;
-	std::cout << RED << "test5: tost const forward list" << RESET << std::endl << std::endl;
+	std::cout << RED << "test5: const forward list" << RESET << std::endl << std::endl;
 
 	const std::forward_list<int> list = {1, 9, 3, 5, 7, 99};
 

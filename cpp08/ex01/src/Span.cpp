@@ -29,7 +29,7 @@ void	Span::addNumber( int nb ) {
 	arr.push_back(nb);
 }
 
-size_t	Span::shortestSpan() {
+int	Span::shortestSpan() {
 	if (arr.size() < 2)
 		throw std::overflow_error("Not enough elements in array to calculate span");
 

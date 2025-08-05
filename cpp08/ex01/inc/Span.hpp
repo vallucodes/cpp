@@ -16,7 +16,7 @@ class Span {
 		~Span( void );
 
 		void	addNumber( int nb );
-		size_t	shortestSpan();
+		int		shortestSpan();
 		int		longestSpan();
 
 		template <typename InputIt>
