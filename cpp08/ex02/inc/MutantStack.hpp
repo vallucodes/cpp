@@ -1,19 +1,24 @@
 #pragma once
 #include <iostream>
 #include <stack>
+#include <deque>
 
-class MutantStack : public std::stack<int> {
+template <typename T, typename Container = std::deque<T>>
+class MutantStack : public std::stack<T, Container> {
 
 	public:
-		MutantStack( void );
-		MutantStack( const MutantStack &other );
-		MutantStack &operator=( const MutantStack &other );
-		~MutantStack( void );
+		MutantStack( void ) = default;
+		MutantStack( const MutantStack &other ) = default;
+		MutantStack &operator=( const MutantStack &other ) = default;
+		~MutantStack( void ) = default;
 
-		void			begin( void );
-		MutantStack		operator++( void );
-		MutantStack&	operator++( int );
-		void			asd( void );
+		using iterator = typename Container::iterator;
+		using const_iterator = typename Container::const_iterator;
+
+		iterator		begin( void );
+		iterator		end( void );
+		const_iterator	begin( void ) const;
+		const_iterator	end( void ) const;
 };
 
-// #include "../src/MutantStack.tpp"
+#include "../src/MutantStack.tpp"

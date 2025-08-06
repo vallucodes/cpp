@@ -8,8 +8,7 @@ OBJ_DIR		= obj/
 INCLUDES	= -I ./inc
 HEADERS		= inc/MutantStack.hpp
 
-SRCS		= src/main.cpp \
-				src/MutantStack.cpp
+SRCS		= src/main.cpp
 
 OBJS		= $(patsubst $(SRC_DIR)%.cpp,$(OBJ_DIR)%.o,$(SRCS))
 
