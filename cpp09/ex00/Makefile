@@ -1,6 +1,6 @@
 NAME		= btc
 CXX			= c++
-CXXFLAGS	= -std=c++11 -Wall -Wextra -Werror
+CXXFLAGS	= -std=c++20 -Wall -Wextra #-Werror
 
 SRC_DIR		= src/
 OBJ_DIR		= obj/
