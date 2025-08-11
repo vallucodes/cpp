@@ -44,9 +44,39 @@ void	test3() {
 	std::cout << "max( a, b ) = " << ::max( a, b ) << std::endl;
 }
 
+class Awesome {
+	public:
+		Awesome(void): _n(0) {}
+		Awesome(int n): _n(n) {}
+		// Awesome(const Awesome& a) : _n(a._n) {}
+		// Awesome & operator=(Awesome & a) {_n=a._n; return *this; }
+		bool operator==(Awesome const& rhs) const { return(this->_n == rhs._n); }
+		bool operator!=(Awesome const& rhs) const { return(this->_n != rhs._n); }
+		bool operator>(Awesome const& rhs) const { return(this->_n > rhs._n); }
+		bool operator<(Awesome const& rhs) const { return(this->_n < rhs._n); }
+		bool operator>=(Awesome const& rhs) const { return(this->_n >= rhs._n); }
+		bool operator<=(Awesome const& rhs) const { return(this->_n <= rhs._n); }
+		int get_n() const { return _n; }
+	private:
+		int _n;
+};
+
+std::ostream & operator<<(std::ostream & o, const Awesome &a) { o<<a.get_n(); return o; }
+
+void	test4() {
+	std::cout << std::endl;
+	std::cout << "\033[1;31mtest4: eval sheet\033[0m" << std::endl << std::endl;
+
+	Awesome a(2), b(4);
+	swap(a,b);
+	std::cout << a << " " << b << std::endl;
+	std::cout << max(a,b) << std::endl;
+}
+
 int main() {
 	test1();
 	test2();
 	test3();
+	test4();
 	return 0;
 }

@@ -15,9 +15,9 @@ class Array {
 		Array &operator=( const Array &other );
 		~Array( void );
 
-		const T&		operator[]( size_t i ) const;
-		T&				operator[]( size_t i );
-		size_t			size( void ) const;
+		const T&	operator[]( size_t i ) const;
+		T&			operator[]( size_t i );
+		size_t		size( void ) const;
 };
 
 template <typename T>

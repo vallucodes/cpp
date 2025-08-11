@@ -12,6 +12,11 @@ void	print_str(std::string& elem) {
 	std::cout << elem << std::endl;
 }
 
+template <typename T>
+void	print(const T& elem ) {
+	std::cout << elem << std::endl;
+}
+
 void	test1() {
 	std::cout << std::endl;
 	std::cout << "\033[1;31mtest1: int array\033[0m" << std::endl << std::endl;
@@ -38,15 +43,23 @@ void	test3() {
 
 void	test4() {
 	std::cout << std::endl;
-	std::cout << "\033[1;31mtest4: nullptr\033[0m" << std::endl << std::endl;
+	std::cout << "\033[1;31mtest4: function template as argument\033[0m" << std::endl << std::endl;
+
+	std::string arr[] = {"123", "456", "789", "0-="};
+	::iter(arr, 4, print<std::string>);
+}
+
+void	test5() {
+	std::cout << std::endl;
+	std::cout << "\033[1;31mtest5: nullptr\033[0m" << std::endl << std::endl;
 
 	std::string *arr = nullptr;
 	::iter(arr, 4, print_str);
 }
 
-void	test5() {
+void	test6() {
 	std::cout << std::endl;
-	std::cout << "\033[1;31mtest5: len = 0\033[0m" << std::endl << std::endl;
+	std::cout << "\033[1;31mtest6: len = 0\033[0m" << std::endl << std::endl;
 
 	int arr[] = {1, 2, 3, 5, 6};
 	::iter(arr, 0, print_int);
@@ -61,18 +74,15 @@ class Awesome {
 };
 std::ostream &operator<< (std::ostream &o, Awesome const & rhs) {o<<rhs.get(); return o;}
 
-template <typename T>
-void print(T const & x ) {std::cout << x << std::endl; return;}
-
-void	test6() {
+void	test7() {
 	std::cout << std::endl;
-	std::cout << "\033[1;31mtest5: len = 0\033[0m" << std::endl << std::endl;
+	std::cout << "\033[1;31mtest7: evalsheet\033[0m" << std::endl << std::endl;
 
 	int tab[] = {0,1,2,3,4};
 	Awesome tab2[5];
 
-	iter(tab, 5UL, print<int>);
-	iter(tab2, 5UL, print<Awesome>);
+	iter(tab, 5, print<int>);
+	iter(tab2, 5, print<Awesome>);
 }
 
 int main() {
@@ -82,5 +92,6 @@ int main() {
 	test4();
 	test5();
 	test6();
+	test7();
 	return 0;
 }

@@ -9,7 +9,6 @@ INCLUDES	= -I ./inc
 HEADERS		= inc/whatever.hpp
 
 SRCS		= src/main.cpp
-				# src/Bureaucrat.cpp
 
 OBJS		= $(patsubst $(SRC_DIR)%.cpp,$(OBJ_DIR)%.o,$(SRCS))
 
