@@ -13,7 +13,7 @@ class BitcoinExchange {
 		BitcoinExchange& operator=( const BitcoinExchange& other ) = delete;
 		~BitcoinExchange( void ) = default;
 
-		void							loadDatabase( void );
-		void							printDatabase( void ) const;
-		std::map<std::string, float>	getDatabase( void ) const;
+		void								loadDatabase( void );
+		void								printDatabase( void ) const;
+		const std::map<std::string, float>&	getDatabase( void ) const;
 };

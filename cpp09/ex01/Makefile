@@ -1,15 +1,15 @@
-NAME		= btc
+NAME		= RPN
 CXX			= c++
-CXXFLAGS	= -std=c++20 -Wall -Wextra -Werror
+CXXFLAGS	= -std=c++11 -Wall -Wextra -Werror
 
 SRC_DIR		= src/
 OBJ_DIR		= obj/
 
 INCLUDES	= -I ./inc
-HEADERS		= inc/BitcoinExchange.hpp
+HEADERS		= inc/RPN.hpp
 
 SRCS		= src/main.cpp \
-				src/BitcoinExchange.cpp
+				src/RPN.cpp
 
 OBJS		= $(patsubst $(SRC_DIR)%.cpp,$(OBJ_DIR)%.o,$(SRCS))
 

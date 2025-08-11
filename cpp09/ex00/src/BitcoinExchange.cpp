@@ -26,7 +26,7 @@ void	BitcoinExchange::loadDatabase( void ) {
 	}
 }
 
-std::map<std::string, float>	BitcoinExchange::getDatabase( void ) const {
+const std::map<std::string, float>&	BitcoinExchange::getDatabase( void ) const {
 	return (data);
 }
 

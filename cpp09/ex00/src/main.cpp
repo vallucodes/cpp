@@ -7,21 +7,36 @@
 
 void	findKey( std::string line, const BitcoinExchange& data ) {
 	size_t pipe_pos = line.find('|');
+	std::string date = line.substr(0, 10);
 	std::string value_str = line.substr(pipe_pos + 1);
 	float value = std::stof(value_str);
-	for (const auto& pair : data.getDatabase()) {
-		if (pair.first == line.substr(0, 10))
-		{
-			std::cout
-			<< pair.first
-			<< " => "
-			<< pair.second
-			<< " = "
-			<< value * pair.second
-			<< std::endl;
-		}
+
+	const std::map<std::string, float>& database = data.getDatabase();
+	std::map<std::string, float>::const_iterator it = database.find(date);
+
+	if (it == database.end())
+	{
+		it = database.upper_bound(date);
+		it--;
 	}
-	//todo : previous date if not found
+	std::cout
+	<< line.substr(0, 10) << " => "
+	<< it->second << " = "
+	<< value * it->second
+	<< std::endl;
+}
+
+void	checkExtraSpaces( std::string line ) {
+	if (!(line[10] == ' ' && line[12] == ' '))
+		throw std::runtime_error("Error: bad input => " + line);
+	size_t count = 0;
+	for (size_t i = 0; i < line.size(); ++i)
+	{
+		if (std::isspace(static_cast<unsigned char>(line[i])))
+			count++;
+	}
+	if (count != 2)
+		throw std::runtime_error("Error: bad input => " + line);
 }
 
 void	checkDateValidity( std::chrono::year_month_day& ymd ) {
@@ -33,7 +48,7 @@ void	checkDateValidity( std::chrono::year_month_day& ymd ) {
 	}
 }
 
-void	checkDateAndValueBounds( const BitcoinExchange& data, std::chrono::year_month_day& ymd, float value ) {
+void	checkDateAndValueBounds( const BitcoinExchange& data, std::string line, float value ) {
 	if (value > 1000)
 		throw std::runtime_error("Error: number too large");
 	if (value < 0)
@@ -41,32 +56,14 @@ void	checkDateAndValueBounds( const BitcoinExchange& data, std::chrono::year_mon
 
 	std::string first_date = data.getDatabase().begin()->first;
 
-	int first_year = std::stoi(first_date.substr(0, 4));
-	int first_month = std::stoi(first_date.substr(5, 2));
-	int first_day = std::stoi(first_date.substr(8, 2));
+	if (line.substr(0,10) < first_date)
+		throw std::runtime_error("Error: date is before database in the past");
 
-	std::chrono::year_month_day first_ymd{
-	std::chrono::year{first_year},
-	std::chrono::month{static_cast<unsigned int>(first_month)},
-	std::chrono::day{static_cast<unsigned int>(first_day)}
-	};
-	if (ymd < first_ymd)
-		throw std::runtime_error("Error: date is before bitcoin existed");
-
-	std::map<std::string, float>::iterator it = data.getDatabase().end();
+	std::map<std::string, float>::const_iterator it = data.getDatabase().end();
 	it--;
 	std::string last_date = it->first;
 
-	int last_year = std::stoi(last_date.substr(0, 4));
-	int last_month = std::stoi(last_date.substr(5, 2));
-	int last_day = std::stoi(last_date.substr(8, 2));
-
-	std::chrono::year_month_day last_ymd{
-	std::chrono::year{last_year},
-	std::chrono::month{static_cast<unsigned int>(last_month)},
-	std::chrono::day{static_cast<unsigned int>(last_day)}
-	};
-	if (ymd > last_ymd)
+	if (line.substr(0,10) > last_date)
 		throw std::runtime_error("Error: date is beyond database in future");
 }
 
@@ -81,7 +78,7 @@ void	parseLine( std::string line, const BitcoinExchange& data ) {
 		throw std::runtime_error("Error: bad input => " + line);
 	if (sep1 != '-' || sep2 != '-' || sep3 != '|')
 		throw std::runtime_error("Error: bad input => " + line);
-	if (iss >> extra)
+	if (iss >> extra && extra != 'f')
 		throw std::runtime_error("Error: bad input => " + line);
 
 	std::chrono::year_month_day ymd{
@@ -90,8 +87,9 @@ void	parseLine( std::string line, const BitcoinExchange& data ) {
 	std::chrono::day{day}
 	};
 
+	checkExtraSpaces(line);
 	checkDateValidity(ymd);
-	checkDateAndValueBounds(data, ymd, value);
+	checkDateAndValueBounds(data, line, value);
 }
 
 int	main(int ac, char **av)
@@ -100,7 +98,7 @@ int	main(int ac, char **av)
 		std::cout << "Usage: ./btc <filename>" << std::endl;
 		return 1;
 	}
-	(void)av;
+
 	std::ifstream infile(av[1]);
 	if (!infile.is_open()) {
 		std::cout << "Error: could not open the file for reading" << std::endl;
@@ -108,9 +106,8 @@ int	main(int ac, char **av)
 	}
 
 	BitcoinExchange database;
-
-	// database.printDatabase();
 	std::string line;
+
 	while (1)
 	{
 		if(!std::getline(infile, line))
@@ -128,4 +125,5 @@ int	main(int ac, char **av)
 			std::cout << e.what() << std::endl;
 		}
 	}
+	return 0;
 }
