@@ -1,4 +1,5 @@
 #include "RPN.hpp"
+#include "testing.hpp"
 #include <iostream>
 #include <sstream>
 #include <limits>
@@ -15,8 +16,6 @@ void	inputValidation( std::string input ) {
 		if (!validInput(c))
 			throw std::runtime_error(std::string("Error: Invalid token in notation: ") + c);
 	}
-	// cont.getStack().push(9);
-	// cont.getStack().pop();
 }
 
 void	checkSubstractionOverflow( int nb1, int nb2 ) {
@@ -48,15 +47,15 @@ void	checkAdditionOverflow( int nb1, int nb2 ) {
 void	checkMultiplicationOverflow( int nb1, int nb2 ) {
 	if (nb1 == 0 || nb2 == 0)
 		return ;
-	if (nb1 == -1 && nb2 == std::numeric_limits<int>::lowest())
+	if (nb1 == -1 && nb2 == std::numeric_limits<int>::min())
 		throw std::runtime_error("Error: overflow");
 	if (nb1 != 0 && nb1 < 0 && (nb2 < std::numeric_limits<int>::max() / nb1))
 		throw std::runtime_error("Error: overflow");
-	if (nb1 != 0 && nb1 < 0 && (nb2 > std::numeric_limits<int>::lowest() / nb1))
+	if (nb1 != 0 && nb1 < 0 && (nb2 > std::numeric_limits<int>::min() / nb1))
 		throw std::runtime_error("Error: overflow");
 	if (nb1 != 0 && nb1 > 0 && (nb2 > std::numeric_limits<int>::max() / nb1))
 		throw std::runtime_error("Error: overflow");
-	if (nb1 != 0 && nb1 > 0 && (nb2 < std::numeric_limits<int>::lowest() / nb1))
+	if (nb1 != 0 && nb1 > 0 && (nb2 < std::numeric_limits<int>::min() / nb1))
 		throw std::runtime_error("Error: overflow");
 }
 
@@ -127,6 +126,13 @@ int	main(int ac, char **av)
 	if (ac != 2) {
 		std::cout << "Usage: ./RPN <reverse polish notation>" << std::endl;
 		return 1;
+	}
+	if (std::string(av[1]) == "test")
+	{
+		// test1();
+		test2();
+		test3();
+		return 0;
 	}
 	try {
 		inputValidation(av[1]);

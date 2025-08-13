@@ -9,7 +9,8 @@ INCLUDES	= -I ./inc
 HEADERS		= inc/RPN.hpp
 
 SRCS		= src/main.cpp \
-				src/RPN.cpp
+				src/RPN.cpp \
+				src/unit-tests-overflow.cpp
 
 OBJS		= $(patsubst $(SRC_DIR)%.cpp,$(OBJ_DIR)%.o,$(SRCS))
 
@@ -18,7 +19,7 @@ all: $(NAME)
 $(NAME): $(OBJS) $(HEADERS)
 	$(CXX) $(CXXFLAGS) $(OBJS) $(INCLUDES) -o $(NAME)
 
-$(OBJ_DIR)%.o: $(SRC_DIR)%.cpp $(HEADERS) $(TEMPLATES)
+$(OBJ_DIR)%.o: $(SRC_DIR)%.cpp $(HEADERS)
 	@mkdir -p $(OBJ_DIR)
 	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
 
