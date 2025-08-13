@@ -1,4 +1,4 @@
-NAME		= mutantStack
+NAME		= mutantstack
 CXX			= c++
 CXXFLAGS	= -std=c++11 -Wall -Wextra -Werror
 
@@ -9,6 +9,8 @@ INCLUDES	= -I ./inc
 HEADERS		= inc/MutantStack.hpp
 
 SRCS		= src/main.cpp
+
+TEMPLATES	= src/MutantStack.tpp
 
 OBJS		= $(patsubst $(SRC_DIR)%.cpp,$(OBJ_DIR)%.o,$(SRCS))
 

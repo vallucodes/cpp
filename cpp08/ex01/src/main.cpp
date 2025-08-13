@@ -133,8 +133,8 @@ void	test4() {
 	}
 	c = a;
 	try {
-		std::cout << "Lon span c after a assigned: " << c.longestSpan() << std::endl;
-		std::cout << "Min span c after a assigned: " << c.shortestSpan() << std::endl;
+		std::cout << "Lon span 'c' after 'a' assigned: " << c.longestSpan() << std::endl;
+		std::cout << "Min span 'c' after 'a' assigned: " << c.shortestSpan() << std::endl;
 	}
 	catch (std::exception& e){
 		std::cout << e.what() << std::endl;
@@ -151,7 +151,7 @@ void	test5() {
 	srand(time(0));
 	try {
 		for (int i = 0; i < size; i++)
-			a.addNumber((rand() %10000));
+			a.addNumber((rand() % 10000));
 		std::cout << "Lon span: " << a.longestSpan() << std::endl;
 		std::cout << "Min span: " << a.shortestSpan() << std::endl;
 	}
@@ -184,10 +184,12 @@ void	test7() {
 	int size = 10;
 	Span a(size);
 
-	srand(time(0));
 	try {
-		for (int i = 0; i < 5; i++)
-			a.addNumber((rand() % 199) - 99);
+		a.addNumber(5);
+		a.addNumber(9);
+		a.addNumber(2);
+		a.addNumber(4);
+		a.addNumber(-2);
 	}
 	catch (std::exception& e){
 		std::cout << e.what() << std::endl;
@@ -200,7 +202,7 @@ void	test7() {
 	catch (std::exception& e){
 		std::cout << e.what() << std::endl;
 	}
-	std::vector<int>	arr = {1, 2, 3, 4, 5};
+	std::vector<int>	arr = {1, 2, 3, 4, 500};
 
 	a.addNumber(arr.begin(), arr.end());
 

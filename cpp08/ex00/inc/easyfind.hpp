@@ -4,9 +4,9 @@
 #include <stdexcept>
 
 template <typename T>
-auto	easyfind(const T& container, int n) {
-	auto i = std::find(container.begin(), container.end() , n);
-	if (i == container.end())
+auto	easyFind( T& container, int n ) {
+	auto it = std::find(container.begin(), container.end(), n);
+	if (it == container.end())
 		throw std::runtime_error("Value not found");
-	return i;
+	return it;
 }

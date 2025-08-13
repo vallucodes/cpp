@@ -17,18 +17,18 @@ void	test1() {
 
 	std::vector<int> vec = {1, 9, 3, 5, 7, 99};
 
-	auto i = easyfind(vec, 7);
-	std::cout << *i << std::endl;
+	auto it = easyFind(vec, 7);
+	std::cout << *it << std::endl;
 
 	try {
-		i = easyfind(vec, 2);
-		std::cout << *i << std::endl;
+		it = easyFind(vec, 2);
+		std::cout << *it << std::endl;
 	} catch (std::exception& e) {
 		std::cout << e.what() << std::endl;
 	}
 
-	i = easyfind(vec, 99);
-	std::cout << *i << std::endl;
+	it = easyFind(vec, 99);
+	std::cout << *it << std::endl;
 }
 
 void	test2() {
@@ -37,18 +37,18 @@ void	test2() {
 
 	std::deque<int> deq = {1, 9, 3, 5, 7, 99};
 
-	auto i = easyfind(deq, 7);
-	std::cout << *i << std::endl;
+	auto it = easyFind(deq, 7);
+	std::cout << *it << std::endl;
 
 	try {
-		i = easyfind(deq, 2);
-		std::cout << *i << std::endl;
+		it = easyFind(deq, 2);
+		std::cout << *it << std::endl;
 	} catch (std::exception& e) {
 		std::cout << e.what() << std::endl;
 	}
 
-	i = easyfind(deq, 99);
-	std::cout << *i << std::endl;
+	it = easyFind(deq, 99);
+	std::cout << *it << std::endl;
 }
 
 void	test3() {
@@ -57,18 +57,18 @@ void	test3() {
 
 	std::list<int> list = {1, 9, 3, 5, 7, 99};
 
-	auto i = easyfind(list, 7);
-	std::cout << *i << std::endl;
+	auto it = easyFind(list, 7);
+	std::cout << *it << std::endl;
 
 	try {
-		i = easyfind(list, 2);
-		std::cout << *i << std::endl;
+		it = easyFind(list, 2);
+		std::cout << *it << std::endl;
 	} catch (std::exception& e) {
 		std::cout << e.what() << std::endl;
 	}
 
-	i = easyfind(list, 99);
-	std::cout << *i << std::endl;
+	it = easyFind(list, 99);
+	std::cout << *it << std::endl;
 }
 
 void	test4() {
@@ -77,18 +77,18 @@ void	test4() {
 
 	std::set<int> set = {1, 9, 3, 5, 7, 99};
 
-	auto i = easyfind(set, 7);
-	std::cout << *i << std::endl;
+	auto it = easyFind(set, 7);
+	std::cout << *it << std::endl;
 
 	try {
-		i = easyfind(set, 2);
-		std::cout << *i << std::endl;
+		it = easyFind(set, 2);
+		std::cout << *it << std::endl;
 	} catch (std::exception& e) {
 		std::cout << e.what() << std::endl;
 	}
 
-	i = easyfind(set, 99);
-	std::cout << *i << std::endl;
+	it = easyFind(set, 99);
+	std::cout << *it << std::endl;
 }
 
 void	test5() {
@@ -97,18 +97,18 @@ void	test5() {
 
 	const std::forward_list<int> list = {1, 9, 3, 5, 7, 99};
 
-	auto i = easyfind(list, 7);
-	std::cout << *i << std::endl;
+	auto it = easyFind(list, 7);
+	std::cout << *it << std::endl;
 
 	try {
-		i = easyfind(list, 2);
-		std::cout << *i << std::endl;
+		it = easyFind(list, 2);
+		std::cout << *it << std::endl;
 	} catch (std::exception& e) {
 		std::cout << e.what() << std::endl;
 	}
 
-	i = easyfind(list, 99);
-	std::cout << *i << std::endl;
+	it = easyFind(list, 99);
+	std::cout << *it << std::endl;
 }
 
 int main() {
