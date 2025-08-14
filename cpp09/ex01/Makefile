@@ -10,7 +10,7 @@ HEADERS		= inc/RPN.hpp
 
 SRCS		= src/main.cpp \
 				src/RPN.cpp \
-				src/unit-tests-overflow.cpp
+				src/unit_tests_overflow.cpp
 
 OBJS		= $(patsubst $(SRC_DIR)%.cpp,$(OBJ_DIR)%.o,$(SRCS))
 
