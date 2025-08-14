@@ -36,34 +36,7 @@ void	test1() {
 
 void	test2() {
 	std::cout << std::endl;
-	std::cout << RED << "test2: given by subject: stack" << RESET << std::endl << std::endl;
-
-	std::list<int> mstack;
-	mstack.push_back(5);
-	mstack.push_back(17);
-	std::cout << "stack back: " << mstack.back() << std::endl;
-	mstack.pop_back();
-	std::cout << "stack size: "<< mstack.size() << std::endl;
-	mstack.push_back(3);
-	mstack.push_back(5);
-	mstack.push_back(737);
-	mstack.push_back(0);
-	std::list<int>::iterator it = mstack.begin();
-	std::list<int>::iterator ite = mstack.end();
-	++it;
-	--it;
-	std::cout << "iterate through: " << std::endl;
-	while (it != ite)
-	{
-		std::cout << *it << std::endl;
-		++it;
-	}
-	std::list<int> s(mstack);
-}
-
-void	test3() {
-	std::cout << std::endl;
-	std::cout << RED << "test3: given by subject: MutantStack" << RESET << std::endl << std::endl;
+	std::cout << RED << "test2: given by subject: MutantStack" << RESET << std::endl << std::endl;
 
 	MutantStack<int> mstack;
 	mstack.push(5);
@@ -88,9 +61,9 @@ void	test3() {
 	std::stack<int> s(mstack);
 }
 
-void	test4() {
+void	test3() {
 	std::cout << std::endl;
-	std::cout << RED << "test4: given by subject: const MutantStack" << RESET << std::endl << std::endl;
+	std::cout << RED << "test3: given by subject: const MutantStack" << RESET << std::endl << std::endl;
 
 	MutantStack<int> mstack1;
 	mstack1.push(5);
@@ -119,9 +92,9 @@ void	test4() {
 	std::stack<int> s(mstack);
 }
 
-void	test5() {
+void	test4() {
 	std::cout << std::endl;
-	std::cout << RED << "test5: other member functions" << RESET << std::endl << std::endl;
+	std::cout << RED << "test4: other member functions" << RESET << std::endl << std::endl;
 
 	MutantStack<int> mstack;
 	mstack.push(5);
@@ -138,9 +111,9 @@ void	test5() {
 	std::stack<int> s(mstack);
 }
 
-void	test6() {
+void	test5() {
 	std::cout << std::endl;
-	std::cout << RED << "test6: MutantStack type string" << RESET << std::endl << std::endl;
+	std::cout << RED << "test5: MutantStack type string" << RESET << std::endl << std::endl;
 
 	MutantStack<std::string> mstack;
 	mstack.push("abc");
@@ -170,6 +143,5 @@ int main() {
 	test3();
 	test4();
 	test5();
-	test6();
 	return 0;
 }
