@@ -15,3 +15,4 @@ class RPN {
 
 		std::stack<int>& getStack( void );
 };
+

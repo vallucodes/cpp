@@ -1,4 +1,4 @@
-#include "RPN.hpp"
+#include "PmergeMe.hpp"
 
 std::stack<int>& RPN::getStack( void ) {
 	return (stack);
