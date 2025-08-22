@@ -14,3 +14,11 @@ void	print_map( std::vector<int>& keys, std::unordered_map<int, int>& pairs, int
 			std::cout << "key: " << keys[i] << " value: " << "not found in map" << std::endl;
 	}
 }
+
+void	print_mainchain( std::vector<int>& main ) {
+	std::cout << "mainchain:" << std::endl;
+	for (size_t i = 0; i < main.size(); ++i)
+	{
+		std::cout << "main["<< i << "] = " << main[i] << std::endl;
+	}
+}

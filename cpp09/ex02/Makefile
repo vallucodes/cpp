@@ -1,6 +1,6 @@
 NAME		= RPN
 CXX			= c++
-CXXFLAGS	= -std=c++11 -Wall -Wextra -Werror
+CXXFLAGS	= -g -std=c++11 -Wall -Wextra #-Werror
 
 SRC_DIR		= src/
 OBJ_DIR		= obj/
