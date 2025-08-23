@@ -56,12 +56,15 @@ size_t get_current( size_t size, size_t k) {
 	return t_curr;
 }
 
+// issue is now when inserting some b values into main chain, it buchers the increments. correction works for inner for loop
+// but t_curr is now incorrectly calculated for second round, maybe because of that
+
 void	fill_mainchain( std::vector<int>& main_chain, std::vector<int>& new_keys, std::unordered_map<int, int>& new_pairs) {
 	fill_mainchain_new_keys(main_chain, new_keys, new_pairs);
 	size_t k = 2;
 	size_t jacobsthal_sequence_rounds = get_jacobsthal_sequence_rounds(main_chain.size() - 1);
 	std::cout << "rounds : " << jacobsthal_sequence_rounds << std::endl;
-	for (size_t i = 0; i < jacobsthal_sequence_rounds; ++i, ++k) //some issue now likely here, use gdb to figure out values inserted and all the amounts and t values correct
+	for (size_t i = 0; i < jacobsthal_sequence_rounds; ++i, ++k)
 	{
 		size_t t_prev = (pow(2, k) + pow(-1, k - 1)) / 3;
 		size_t t_curr = get_current(main_chain.size() - 1, k);
@@ -69,10 +72,14 @@ void	fill_mainchain( std::vector<int>& main_chain, std::vector<int>& new_keys, s
 		// std::cout << "t curr: " << t_curr << std::endl;
 		size_t new_additions = t_curr - t_prev;								//calculate this based on current t
 		std::cout << "new additions: " << new_additions << std::endl;
+		size_t correction = 0;
 		for (size_t i = 0; i < new_additions; ++i)							//loop over all new b's
 		{
-			int last = new_pairs[main_chain[t_curr - i]];	//calculate this based on current t
-			int new_pos = binary_insert_pos(main_chain, last);
+			size_t b_pos = t_curr - i + correction;
+			size_t last = new_pairs[main_chain[b_pos]];
+			size_t new_pos = binary_insert_pos(main_chain, last);
+			if (new_pos < t_curr - i)
+				correction = 1;
 			main_chain.insert(main_chain.begin() + new_pos, last);
 		}
 	}
