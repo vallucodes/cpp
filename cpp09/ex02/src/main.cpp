@@ -56,32 +56,34 @@ size_t get_current( size_t size, size_t k) {
 	return t_curr;
 }
 
-// issue is now when inserting some b values into main chain, it buchers the increments. correction works for inner for loop
-// but t_curr is now incorrectly calculated for second round, maybe because of that
-
-void	fill_mainchain( std::vector<int>& main_chain, std::vector<int>& new_keys, std::unordered_map<int, int>& new_pairs) {
-	fill_mainchain_new_keys(main_chain, new_keys, new_pairs);
+std::vector<int>	fill_full_b_chain( std::vector<int>& main_chain, std::unordered_map<int, int>& new_pairs) {
 	size_t k = 2;
+	std::vector<int> full_b_chain;
 	size_t jacobsthal_sequence_rounds = get_jacobsthal_sequence_rounds(main_chain.size() - 1);
-	std::cout << "rounds : " << jacobsthal_sequence_rounds << std::endl;
 	for (size_t i = 0; i < jacobsthal_sequence_rounds; ++i, ++k)
 	{
 		size_t t_prev = (pow(2, k) + pow(-1, k - 1)) / 3;
-		size_t t_curr = get_current(main_chain.size() - 1, k);
-		// std::cout << "t prev: " << t_prev << std::endl;
-		// std::cout << "t curr: " << t_curr << std::endl;
-		size_t new_additions = t_curr - t_prev;								//calculate this based on current t
-		std::cout << "new additions: " << new_additions << std::endl;
-		size_t correction = 0;
-		for (size_t i = 0; i < new_additions; ++i)							//loop over all new b's
+		size_t t_curr = get_current(new_pairs.size(), k);
+		size_t new_additions = t_curr - t_prev;
+		for (size_t i = 0; i < new_additions; ++i)
 		{
-			size_t b_pos = t_curr - i + correction;
-			size_t last = new_pairs[main_chain[b_pos]];
-			size_t new_pos = binary_insert_pos(main_chain, last);
-			if (new_pos < t_curr - i)
-				correction = 1;
-			main_chain.insert(main_chain.begin() + new_pos, last);
+			size_t	b_pos = t_curr - i;
+			size_t	last = new_pairs[main_chain[b_pos]];
+			full_b_chain.push_back(last);
 		}
+	}
+	return full_b_chain;
+}
+
+
+void	fill_mainchain( std::vector<int>& main_chain, std::vector<int>& new_keys, std::unordered_map<int, int>& new_pairs) {
+	fill_mainchain_new_keys(main_chain, new_keys, new_pairs);
+	std::vector<int>	full_b_chain = fill_full_b_chain(main_chain, new_pairs);
+	for (size_t i = 0; i < full_b_chain.size(); ++i)
+	{
+		size_t value_to_insert = full_b_chain[i];
+		size_t new_pos = binary_insert_pos(main_chain, value_to_insert);
+		main_chain.insert(main_chain.begin() + new_pos, value_to_insert);
 	}
 	print_mainchain(main_chain);
 }
