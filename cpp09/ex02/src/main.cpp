@@ -5,6 +5,7 @@
 #include <unordered_map>
 #include <cmath>
 #include <optional>
+#include <sstream>
 #include <cstdlib> //rand()
 
 int comparisons = 0;
@@ -152,13 +153,39 @@ std::vector<int>	recursive_splitting( std::vector<int>& keys, int level ) {
 	return (main_chain);
 }
 
-int	main()
+std::vector<int>	parse(std::string input) {
+	std::istringstream iss(input);
+	std::vector<int> arr;
+	int		nb;
+	char	sep;
+
+	while (iss >> nb)
+	{
+		iss >> nb;
+		if (nb < 0)
+		{
+			std::cout << "Error" << std::endl;
+			exit(0);
+		}
+		arr.push_back(nb);
+		iss >> sep;
+	}
+	return arr;
+}
+
+int	main(int ac, char **av)
 {
-	// int size = 19;
+	if (ac < 2)
+	{
+		std::cout << "Error" << std::endl;
+		return 1;
+	}
+	// int size = 33;
+	std::vector<int> arr_to_sort = parse(av[1]);
 	// std::vector<int> arr_to_sort = {3, 0, 2, 17, 4, 15, 20, 1, 5, 9, 7, 18, 8, 16, 19, 6};
 	// std::vector<int> arr_to_sort = {3, 0, 2, 20, 4, 15, 17, 8, 9, 1, 12, 11};
 	// std::vector<int> arr_to_sort = {5, 0, 6, 10, 7, 8, 4, 9, 1};
-	std::vector<int> arr_to_sort = {3, 0, 2, 5, 6, 1, 9, 10};
+	// std::vector<int> arr_to_sort = {3, 0, 2, 5, 6, 1, 9, 10};
 	// std::vector<int> arr_to_sort = {17, 8, 9, 1, 12, 11, 3, 0};
 	// std::vector<int> arr_to_sort = {1, 3, 9, 0, 4, 8, 2};
 	// std::vector<int> arr_to_sort = {2, 9, 4, 6, 3, 7};
