@@ -1,6 +1,6 @@
-NAME		= RPN
+NAME		= PmergeMe
 CXX			= c++
-CXXFLAGS	= -g -std=c++17 -Wall -Wextra #-Werror
+CXXFLAGS	= -std=c++17 -Wall -Wextra -Werror
 
 SRC_DIR		= src/
 OBJ_DIR		= obj/

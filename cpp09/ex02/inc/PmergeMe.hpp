@@ -1,18 +1,34 @@
 #pragma once
 #include <iostream>
-#include <stack>
+#include <string>
+#include <vector>
+#include <unordered_set>
+#include <unordered_map>
+#include <cmath>
+#include <optional>
+#include <regex>
+#include <sstream>
+#include <cstdlib> //rand()
 
-class RPN {
+class PmergeMe {
 
 	private:
-		std::stack<int>	stack;
+		size_t				comparisons;
+		std::vector<int>	arr;
+		// std::deque<int>		stack;
 
 	public:
-		RPN( void ) = default;
-		RPN( const RPN& other ) = delete;
-		RPN& operator=( const RPN& other ) = delete;
-		~RPN( void ) = default;
+		PmergeMe( void ) = delete;
+		PmergeMe( std::vector<int>& arr );
+		PmergeMe( const PmergeMe& other ) = delete;
+		PmergeMe& operator=( const PmergeMe& other ) = delete;
+		~PmergeMe( void ) = default;
 
-		std::stack<int>& getStack( void );
+		static std::vector<int>	parse( int ac, char **av );
+		void				sort( void );
+		void				print( std::string msg ) const;
+
+		const	std::vector<int>&	getData() const;
+		size_t	getComparisons( void ) const;
 };
 
