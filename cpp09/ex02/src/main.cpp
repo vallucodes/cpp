@@ -1,10 +1,13 @@
 #include "PmergeMe.hpp"
 #include "print.hpp"
 #include <iostream>
+#include <string>
 #include <vector>
+#include <unordered_set>
 #include <unordered_map>
 #include <cmath>
 #include <optional>
+#include <regex>
 #include <sstream>
 #include <cstdlib> //rand()
 
@@ -116,7 +119,7 @@ void	fill_mainchain( std::vector<int>& main_chain, std::vector<int>& new_keys, s
 		size_t new_pos = binary_insert_pos(main_chain, value_to_insert, new_pairs);
 		main_chain.insert(main_chain.begin() + new_pos, value_to_insert);
 	}
-	print_mainchain(main_chain);
+	// print_mainchain(main_chain);
 }
 
 std::vector<int>	recursive_splitting( std::vector<int>& keys, int level ) {
@@ -146,31 +149,77 @@ std::vector<int>	recursive_splitting( std::vector<int>& keys, int level ) {
 		}
 		comparisons++;
 	}
-	print_map(new_keys, new_pairs, level);
+	// print_map(new_keys, new_pairs, level);
 	std::vector<int>	main_chain;
 	main_chain = recursive_splitting(new_keys, level);
 	fill_mainchain(main_chain, new_keys, new_pairs, remainder);
 	return (main_chain);
 }
 
-std::vector<int>	parse(std::string input) {
-	std::istringstream iss(input);
-	std::vector<int> arr;
-	int		nb;
-	char	sep;
-
-	while (iss >> nb)
+void	check_doubles(std::vector<int>& arr) {
+	std::unordered_set<int>	present;
+	for (int nb : arr)
 	{
-		iss >> nb;
-		if (nb < 0)
-		{
-			std::cout << "Error" << std::endl;
-			exit(0);
-		}
-		arr.push_back(nb);
-		iss >> sep;
+		if (present.insert(nb).second == false)
+			throw std::runtime_error("Error");
 	}
-	return arr;
+}
+
+void	parse_single( std::string input, std::vector<int>& arr) {
+	std::istringstream	iss(input);
+	std::string			token;
+	std::regex valid("^\\d+(, \\d+)*$");
+
+	if (!std::regex_match(input, valid))
+		throw std::runtime_error("Error");
+
+	while (std::getline(iss, token, ','))
+	{
+		size_t pos;
+		int nb = std::stoi(token, &pos);
+		if (nb < 0)
+			throw std::runtime_error("Error");
+		if(pos != token.length())
+			throw std::runtime_error("Error");
+		arr.push_back(nb);
+	}
+	check_doubles(arr);
+}
+
+void	parse_multiple( char** input, std::vector<int>& arr) {
+	size_t	i = 1;
+	while (input[i])
+	{
+		std::string token(input[i]);
+		size_t pos;
+		int nb = std::stoi(token, &pos);
+		if (nb < 1)
+			throw std::runtime_error("Error");
+		if(pos != token.length())
+			throw std::runtime_error("Error");
+		arr.push_back(nb);
+		i++;
+	}
+	check_doubles(arr);
+}
+
+void	print( std::vector<int>& arr, std::string msg ) {
+	if (msg == "Before")
+		std::cout << msg << ":";
+	else
+		std::cout << msg << ": ";
+	if (arr.size() > 5)
+	{
+		for (int i = 0; i < 4; ++i)
+			std::cout << " " << arr[i];
+		std::cout << " [...]" << std::endl;
+	}
+	if (arr.size() <= 5)
+	{
+		for (int nb : arr)
+			std::cout << " " << nb;
+		std::cout << std::endl;
+	}
 }
 
 int	main(int ac, char **av)
@@ -180,14 +229,27 @@ int	main(int ac, char **av)
 		std::cout << "Error" << std::endl;
 		return 1;
 	}
+	try {
+		std::vector<int> arr_to_sort;
+		if (ac == 2)
+			parse_single(av[1], arr_to_sort);
+		else
+			parse_multiple(av, arr_to_sort);
+		print(arr_to_sort, "Before");
+		std::vector<int> sorted = recursive_splitting(arr_to_sort, 0);
+		print(sorted, "After");
+		// std::cout << "comparisons: " << comparisons << std::endl;
+	} catch (std::exception& e) {
+		std::cout << "Error" << std::endl;
+		return 1;
+	}
 	// int size = 33;
-	std::vector<int> arr_to_sort = parse(av[1]);
-	// std::vector<int> arr_to_sort = {3, 0, 2, 17, 4, 15, 20, 1, 5, 9, 7, 18, 8, 16, 19, 6};
-	// std::vector<int> arr_to_sort = {3, 0, 2, 20, 4, 15, 17, 8, 9, 1, 12, 11};
-	// std::vector<int> arr_to_sort = {5, 0, 6, 10, 7, 8, 4, 9, 1};
-	// std::vector<int> arr_to_sort = {3, 0, 2, 5, 6, 1, 9, 10};
-	// std::vector<int> arr_to_sort = {17, 8, 9, 1, 12, 11, 3, 0};
-	// std::vector<int> arr_to_sort = {1, 3, 9, 0, 4, 8, 2};
+	// std::vector<int> arr_to_sort = {4, 1, 3, 17, 5, 15, 20, 2, 6, 10, 8, 18, 9, 16, 19, 7};
+	// std::vector<int> arr_to_sort = {4, 1, 3, 20, 5, 15, 17, 8, 9, 2, 12, 11};
+	// std::vector<int> arr_to_sort = {5, 1, 6, 10, 7, 8, 4, 9, 2};
+	// std::vector<int> arr_to_sort = {4, 1, 3, 5, 6, 2, 9, 10};
+	// std::vector<int> arr_to_sort = {17, 8, 9, 2, 12, 11, 3, 1};
+	// std::vector<int> arr_to_sort = {2, 4, 9, 1, 5, 8, 3};
 	// std::vector<int> arr_to_sort = {2, 9, 4, 6, 3, 7};
 	// std::vector<int> arr_to_sort = {17, 8, 9, 1, 12};
 	// std::vector<int> arr_to_sort;
@@ -197,7 +259,5 @@ int	main(int ac, char **av)
 	// 	arr_to_sort.push_back(rand() % 100000);
 	// 	std::cout << arr_to_sort[i] << std::endl;
 	// }
-	recursive_splitting(arr_to_sort, 0);
-	std::cout << "comparisons: " << comparisons << std::endl;
 	return 0;
 }
